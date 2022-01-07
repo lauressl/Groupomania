@@ -11,18 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.User.hasMany(models.Post)
-      models.User.hasMany(models.Comment)
+      models.user.hasMany(models.comment)
+      models.user.hasMany(models.post)
     }
   };
   User.init({
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    idAdmin: DataTypes.BOOLEAN
+    isAdmin: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'user',
+    freezeTableName: true
   });
   return User;
 };

@@ -19,17 +19,18 @@ app.use(bodyParser.json());
 //Sync database
 
 const sequelize = new Sequelize(process.env.NAME_BDD, process.env.USER_BDD, process.env.PWD_BDD, {
-    dialect: 'mysql'
+    dialect: 'mysql',
+    define :
+    {freezeTableName: true}
 });
 
-models.sequelize.sync({ force: true }).then(result => {
+models.sequelize.sync({alter : true}).then(result => {
     console.log(result);
-    app.listen(3000);
 }).catch(err => {
     console.log(err);
 });
 
-sequelize.authenticate().then (() => {
+sequelize.authenticate().then ((data) => {
     console.log("Connection to database successful!");
 }).catch((err) => {
     console.log("Error connecting to database");
