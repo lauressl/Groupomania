@@ -2,6 +2,8 @@
 const bcrypt= require('bcrypt');
 const jwtUtils = require('../utils/jwt.utils');
 const models = require('../models');
+const validator = require('validator');
+
 
 //Routes
 module.exports = {
@@ -17,13 +19,23 @@ module.exports = {
             return res.status(400).json({ 'error' : 'missing parameters'});
         }
 
+        //Verify user's informations securirty
+        let validateMail = validator.isEmail(req.body.email)
+        let validatePwd = validator.isStrongPassword(req.body.password)
+        
+        if(validateMail == false){
+            return res.status(200).json({ 'error': 'please enter a valid email adress'})
+        }
+        if(validatePwd== false){
+            return res.status(200).json({ 'error': 'please enter a valid password'})
+        }
         //check if user exist
         models.user.findOne({
             attributes: ['email'],
             where: {email : email}
         })
         .then(function(userFound){
-            if (!userFound){
+            if ((!userFound) && (validateMail === true) && (validatePwd === true)){
                 //encrypted password
                 bcrypt.hash(password, 5, function(err, bcryptedPwd){
                     const newUser = models.user.create({
