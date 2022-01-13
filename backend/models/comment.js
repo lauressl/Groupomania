@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   comment.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     likes: {
       type: DataTypes.INTEGER,
       allowNull: true

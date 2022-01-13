@@ -36,11 +36,14 @@ models.sequelize.sync({alter : true}).then(result => {
     console.log(err);
 });
 
+const profileRoutes = require ('./routes/profile');
+
 app.use(helmet());
 
+app.use("/api/profile", profileRoutes);
 /*app.use("/api/");
 app.use("/api/home");
-app.use("/api/profile");
+
 app.use("/api/feed"); */
 
 module.exports = app;
