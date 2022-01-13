@@ -24,16 +24,16 @@ const sequelize = new Sequelize(process.env.NAME_BDD, process.env.USER_BDD, proc
     {freezeTableName: true}
 });
 
+sequelize.authenticate().then (() => {
+    console.log("Connection to database successful!");
+}).catch((err) => {
+    console.log("Error connecting to database");
+});
+
 models.sequelize.sync({alter : true}).then(result => {
     console.log(result);
 }).catch(err => {
     console.log(err);
-});
-
-sequelize.authenticate().then ((data) => {
-    console.log("Connection to database successful!");
-}).catch((err) => {
-    console.log("Error connecting to database");
 });
 
 app.use(helmet());
