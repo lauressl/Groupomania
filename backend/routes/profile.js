@@ -4,7 +4,7 @@ const userCtrl = require('../controlers/userCtrl');
 
 //User infos
 //router.get('/me');
-router.post('/me', userCtrl.signup);
+//router.post('/me');
 //router.delete('/me');
 
 //User post
