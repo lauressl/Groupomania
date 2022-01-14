@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const userCtrl = require('../controlers/userCtrl');
+const profileCtrl = require('../controlers/profileCtrl');
+
+const auth = require('../utils/auth');
+
 
 //User infos
-//router.get('/me');
+router.get('/me', auth, profileCtrl.getProfile);
 //router.post('/me');
 //router.delete('/me');
 

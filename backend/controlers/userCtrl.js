@@ -5,9 +5,9 @@ const models = require('../models');
 const validator = require('validator');
 
 
-//Routes
+//Controlers
 module.exports = {
-    //SIGNUP
+    //*****SIGNUP*****//
     signup: function(req, res){
         //params
         const username = req.body.username;
@@ -63,7 +63,7 @@ module.exports = {
         })
     },
 
-    //LOGIN
+    //*****LOGIN*****//
     login: function(req, res){
         //params
         const email = req.body.email;
