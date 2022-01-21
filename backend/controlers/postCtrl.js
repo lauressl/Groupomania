@@ -1,29 +1,26 @@
 const models = require('../models');
-const postCtrl = require('../controlers/postCtrl');
 
 
 module.exports = {
     //****PUBLISH****/
-    publishPost: function (req, res){
+    publishPost: async function (req, res){
         //params
-        const postId = req.body.id;
-        const title = req.body.title;
-        const content = req.body.content;
-        const attachement = req.body.attachement;
-        const user_id = req.userAuth.id;
-        const likes = req.body.likes;
+        try {
+            console.log("coucou");
+            const title = req.body.title;
+            const content = req.body.content;
+            const user = req.userAuth.id;
 
-        if(title && content && attachement && user_id ) {
-            const newPost = models.post.create({
+            await models.post.create({
                 title: title,
                 content: content,
-                attachement: attachement,
-                user_id: user_id,
-                likes: 0
+                user_id: user,
+                likes:0
             })
+            return res.status(200).json({'message': "message envoyé"})
         }
-        else {
-            return res.status(200).json({'error': 'missing params'})
+        catch(err){
+            return res.status(500).json({'error': `${err}`})
         }
     }
 }

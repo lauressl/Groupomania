@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     attachement: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     likes: {
       type: DataTypes.INTEGER,
