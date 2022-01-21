@@ -22,5 +22,14 @@ module.exports = {
         catch(err){
             return res.status(500).json({'error': `${err}`})
         }
+    },
+    getAllPosts: async function(req, res){
+        try{
+            console.log("getPost");
+            return res.status(200).json({'message': "all posts "})
+        }
+        catch(err){
+            return res.status(500).json({'error': `${err}`})
+        }
     }
 }
