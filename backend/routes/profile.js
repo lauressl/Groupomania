@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const profileCtrl = require('../controlers/profileCtrl');
 
-const auth = require('../utils/auth');
+const auth = require('../middlewares/auth');
 
 
 //User infos

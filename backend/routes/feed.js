@@ -3,7 +3,7 @@ const router = express.Router();
 const postCtrl = require('../controlers/postCtrl');
 const commentCtrl = require('../controlers/commentCtrl');
 
-const auth = require('../utils/auth');
+const auth = require('../middlewares/auth');
 
 
 //Posts

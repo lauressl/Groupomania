@@ -26,7 +26,9 @@ module.exports = {
     getAllPosts: async function(req, res){
         try{
             console.log("getPost");
-            return res.status(200).json({'message': "all posts "})
+            const post = await models.post.findAll();
+            console.log("All posts:", JSON.stringify(post));
+            return res.status(200).json({'title': 'posts trouvés'})
         }
         catch(err){
             return res.status(500).json({'error': `${err}`})
