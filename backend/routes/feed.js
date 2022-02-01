@@ -4,11 +4,12 @@ const postCtrl = require('../controlers/postCtrl');
 const commentCtrl = require('../controlers/commentCtrl');
 
 const auth = require('../middlewares/auth');
+const multer = require('../middlewares/multer-config');
 
 
 //Posts
 router.get('/post/all', auth, postCtrl.getAllPosts);
-router.post('/post/publish', auth, postCtrl.publishPost);
+router.post('/post/publish', auth, multer, postCtrl.publishPost);
 //router.delete('/post/:id');
 
 //Comment
