@@ -17,7 +17,7 @@ module.exports = {
             await models.post.create({
                 title: title,
                 content: content,
-                user_id: user,
+                userId: user,
                 attachement: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
                 likes:0
             })
@@ -32,7 +32,7 @@ module.exports = {
             console.log("getPost");
             const post = await models.post.findAll();
             console.log("All posts:", JSON.stringify(post));
-            return res.status(200).json({'title': 'posts trouvés'})
+            return res.status(200).json({'posts': post})
         }
         catch(err){
             return res.status(500).json({'error': `${err}`})

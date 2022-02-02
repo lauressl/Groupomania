@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.comment.belongsTo(models.user)
+      models.comment.belongsTo(models.user, {onDelete: 'CASCADE'}),
+      models.comment.belongsTo(models.post)
 
     }
   };
@@ -21,11 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    likes: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references:{
@@ -33,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         key:'id'
       }
     },
-    post_id: {
+    postId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references:{

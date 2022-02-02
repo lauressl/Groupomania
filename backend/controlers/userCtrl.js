@@ -13,7 +13,6 @@ module.exports = {
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
-        const admin = req.body.isAdmin;
 
         if (username == null || email == null || password == null){
             return res.status(400).json({ 'error' : 'missing parameters'});

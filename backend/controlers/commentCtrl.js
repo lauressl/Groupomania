@@ -10,10 +10,24 @@ module.exports = {
 
             await models.comment.create({
                 content: content,
-                user_id: user,
-                post_id: post
+                userId: user,
+                postId: post
             })
             return res.status(200).json({'message': "comment posts "})
+        }
+        catch(err){
+            return res.status(500).json({'error': `${err}`})
+        }
+    },
+    getAllComments: async function(req, res){
+        try{
+            console.log("getComments");
+            const comments = await models.comment.findAll({
+                where: {post_id : 1}
+                }
+            );
+            console.log("All comments:", JSON.stringify(comments));
+            return res.status(200).json({'comments': comments})
         }
         catch(err){
             return res.status(500).json({'error': `${err}`})

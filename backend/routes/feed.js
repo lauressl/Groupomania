@@ -14,7 +14,7 @@ router.post('/post/publish', auth, multer, postCtrl.publishPost);
 
 //Comment
 router.post('/post/comment', auth, commentCtrl.commentPost);
-//router.get('/post/comment/:id');
+router.get('/post/comment/:id', auth, commentCtrl.getAllComments);
 
 //Likes
 //router.post('/like/:id')

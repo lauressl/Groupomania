@@ -24,5 +24,24 @@ module.exports= {
             res.status(500).json({ 'error': 'cannot fetch user'});
 
         });
+    },
+    //*****DELETE PROFILE *****//
+    deleteProfile: async function(req,res){
+        //params
+        //get id from auth middleware and attached it to the request
+        const userId = req.userAuth.id;
+        if(userId) {
+            try {
+                await models.user.destroy({
+                    where: {id: userId}
+                })
+                res.status(201).json({'user': 'user deleted'});
+            
+            }
+            catch(err){
+                res.status(500).json({ 'error': `${err}`});
+
+            };
+        }
     }
 }
