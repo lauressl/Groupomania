@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     content: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     userId: {
       type: DataTypes.INTEGER,
@@ -39,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     attachement: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      defaultValue: null
     }
   }, {
     sequelize,

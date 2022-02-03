@@ -6,7 +6,7 @@ module.exports = {
             console.log("comment post")
             const content = req.body.content;
             const user = req.userAuth.id;
-            const post = req.body.post_id;
+            const post = req.body.postId;
 
             await models.comment.create({
                 content: content,
@@ -22,10 +22,7 @@ module.exports = {
     getAllComments: async function(req, res){
         try{
             console.log("getComments");
-            const comments = await models.comment.findAll({
-                where: {post_id : 1}
-                }
-            );
+            const comments = await models.comment.findAll();
             console.log("All comments:", JSON.stringify(comments));
             return res.status(200).json({'comments': comments})
         }

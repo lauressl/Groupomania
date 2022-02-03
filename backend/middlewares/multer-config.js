@@ -23,5 +23,4 @@ const storage = multer.diskStorage({
     }
 });
 
-// .single('image') = file unique which is an img
 module.exports = multer({ storage: storage }).single('attachement');
