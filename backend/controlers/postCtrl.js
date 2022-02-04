@@ -13,8 +13,8 @@ module.exports = {
             const content = req.body.content;
             const user = req.userAuth.id;
             let attachement;
-            
-            if(req.body.attachement){
+
+            if(req.file){
                attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
             }
         
