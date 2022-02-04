@@ -83,7 +83,8 @@ module.exports = {
                     if(resBycrypt){
                         return res.status(200).json({
                             'userId': userFound.id,
-                            'token': jwtUtils.generateUserToken(userFound)
+                            'token': jwtUtils.generateUserToken(userFound),
+                            'isAdmin': userFound.isAdmin
                         });
                     }
                     else{

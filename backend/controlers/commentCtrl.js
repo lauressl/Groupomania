@@ -22,7 +22,10 @@ module.exports = {
     getAllComments: async function(req, res){
         try{
             console.log("getComments");
-            const comments = await models.comment.findAll();
+            console.log("req", req.params)
+            const comments = await models.comment.findAll({
+                where: {postId: req.params.postId}
+            });
             console.log("All comments:", JSON.stringify(comments));
             return res.status(200).json({'comments': comments})
         }

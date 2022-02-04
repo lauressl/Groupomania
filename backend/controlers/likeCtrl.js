@@ -20,7 +20,10 @@ module.exports = {
     getAllLike: async function(req, res){
         try{
             console.log("getLikes");
-            const likes = await models.like.findAll();
+            console.log("req", req.params);
+            const likes = await models.like.findAndCountAll({
+                where: {postId: req.params.postId}
+            });
             console.log("All likes:", JSON.stringify(likes));
             return res.status(200).json({'likes': likes})
         }

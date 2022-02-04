@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.like.belongsTo(models.user, {onDelete: 'CASCADE'}),
-      models.like.belongsTo(models.post), {onDelete: 'CASCADE'}
+      models.like.belongsTo(models.post, {onDelete: 'CASCADE'})
 
     }
   };

@@ -6,6 +6,8 @@ module.exports= {
         //params
         //get id from auth middleware and attached it to the request
         const userId = req.userAuth.id;
+        const auth = req.userAuth;
+        console.log("verification du auth", auth);
 
         models.user.findOne({
             attributes: ['id', 'email', 'username'],

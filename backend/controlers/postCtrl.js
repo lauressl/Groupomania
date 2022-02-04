@@ -12,10 +12,12 @@ module.exports = {
             const title = req.body.title;
             const content = req.body.content;
             const user = req.userAuth.id;
-
-            const attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+            let attachement;
             
-
+            if(req.body.attachement){
+               attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+            }
+        
             await models.post.create({
                 title: title,
                 content: content,

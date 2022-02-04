@@ -16,11 +16,11 @@ router.post('/post/publish', auth, multer, postCtrl.publishPost);
 
 //Comment
 router.post('/post/comment', auth, commentCtrl.commentPost);
-router.get('/post/comment/:id', auth, commentCtrl.getAllComments);
+router.get('/post/comment/:postId', auth, commentCtrl.getAllComments);
 
 //Likes
-router.post('post/like', auth, likeCtrl.likePost);
-router.get('post/like/:id', auth, likeCtrl.getAllLike);
+router.post('/post/like', auth, likeCtrl.likePost);
+router.get('/post/like/:postId', auth, likeCtrl.getAllLike);
 
 
 module.exports = router;
