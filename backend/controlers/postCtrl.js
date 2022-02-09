@@ -41,5 +41,30 @@ module.exports = {
         catch(err){
             return res.status(500).json({'error': `${err}`})
         }
+    },
+    deletePost: async function(req,res){
+        //params
+        //get id from auth middleware and attached it to the request
+        const userId = req.userAuth.id;
+        const admin = req.userAuth.admin;
+        const postId = req.params.id;
+
+        console.log("del comment")
+        if(userId || admin) {
+            try {
+                await models.post.destroy({
+                    where: {
+                        userId: userId,
+                        id: postId
+                    }
+                })
+                res.status(201).json({'post': 'post deleted'});
+            
+            }
+            catch(err){
+                res.status(500).json({ 'error': `${err}`});
+
+            };
+        }
     }
 }

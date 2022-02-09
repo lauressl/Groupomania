@@ -32,5 +32,31 @@ module.exports = {
         catch(err){
             return res.status(500).json({'error': `${err}`})
         }
+    },
+
+    deleteComment: async function(req,res){
+        //params
+        //get id from auth middleware and attached it to the request
+        const userId = req.userAuth.id;
+        const admin = req.userAuth.admin;
+        const postId = req.params.postId;
+
+        console.log("del comment")
+        if(userId || admin) {
+            try {
+                await models.comment.destroy({
+                    where: {
+                        userId: userId,
+                        postId: postId
+                    }
+                })
+                res.status(201).json({'comment': 'comment deleted'});
+            
+            }
+            catch(err){
+                res.status(500).json({ 'error': `${err}`});
+
+            };
+        }
     }
 }
