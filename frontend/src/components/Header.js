@@ -1,12 +1,11 @@
-import logo from '../images/icon.png';
+import logo from '../images/icon-above-font.png';
 import '../styles/app.scss';
 
 function Header () {
     return(
         <header className="App-header">
-        <h1>Groupomania</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+            <img src={logo} className="App-logo" alt="logo" />
+        </header>
     );
 }
 

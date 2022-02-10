@@ -1,0 +1,9 @@
+.app-footer{
+    display: flex;
+    height: 100px;
+    &-logo{
+        width: 150px;
+        height: 150px;
+        align-self: left;     
+    }
+}

@@ -1,8 +1,13 @@
 import '../styles/home.scss'
 
-function Home () {
+const Home = () => {
     return (
-        <h1 className='home-title'>Accueil</h1>
-    )
+        <>
+            <h1 className='home-title'>Accueil</h1>
+            <form>
+                <input type="text"></input>
+            </form>
+        </>
+    );
 }
 export default Home;
