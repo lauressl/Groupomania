@@ -1,5 +1,6 @@
 //Imports
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const models = require("./models");
@@ -16,8 +17,21 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-//Sync database
+//requetes
+app.use(cors());
 
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+  });
+
+app.get("/", function (req, res) {
+    res.send(`<meta http-equiv="refresh" content="0; url=${process.env.FRONT_URL}"/>`)
+});
+
+//Sync database
 const sequelize = new Sequelize(process.env.NAME_BDD, process.env.USER_BDD, process.env.PWD_BDD, {
     dialect: 'mysql',
     define :

@@ -11,7 +11,7 @@ function Navbar () {
                     <li>
                         <>
                             {(item.link)
-                                ? <NavLink exact to={item.link}>
+                                ? <NavLink link to={{pathname:`${item.link}`}}>
                                     {item.title}
                                     </NavLink>
                                 : <h2>{item.title}</h2>

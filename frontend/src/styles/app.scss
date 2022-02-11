@@ -8,21 +8,13 @@
   }
 } */
 
-.App-header {
-  background-color: #ffffff;
-  height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
-}
+
 h1{
   color: red;
+}
+main{
+  height: 60%;
+  overflow: scroll;
 }
 /* @keyframes App-logo-spin {
   from {

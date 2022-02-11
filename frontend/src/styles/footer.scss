@@ -1,8 +1,10 @@
 .app-footer{
     display: flex;
-    height: 100px;
+    height: auto;
+    width: 100%;
+    position: sticky;
+    background-color: black;
     &-logo{
-        width: 150px;
         height: 150px;
         align-self: left;     
     }

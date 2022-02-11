@@ -1,5 +1,5 @@
-import logo from '../images/icon-above-font.png';
-import '../styles/app.scss';
+import logo from '../images/icon-above-font2.png';
+import '../styles/header.scss';
 
 function Header () {
     return(

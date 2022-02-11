@@ -1,3 +1,72 @@
-.home-title {
-    color: black;
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    margin: 20px 0 10px 0;
+    &-title {
+        color: black;
+        font-size: 20px;
+    }
+    &-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%;
+        height: auto;
+        margin: 30px 0 30px 0;
+    }
+    
+    &-signup, &-login{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: auto;
+        margin: 0 0 30px 0;
+        background-color: rgba(243, 243, 243, 0.64);
+        box-shadow: -1px 2px 7px 3px rgba(191,177,177,0.64);
+        &:hover{
+            box-shadow: -1px 2px 7px 3px rgb(247, 121, 121);
+        }
+        h2{
+            color: red;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            padding: 10px;
+        }
+        label{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            text-align: left;
+            input{
+                width: 90%;
+                align-self: center;
+                margin-top: 5px;
+                &:active{
+                    outline:none;
+                }
+            }
+            
+        }
+        button{
+            width: 60%;
+            height: 30px;
+            align-self: center;
+            justify-self: flex-end;
+            margin: 10px 0 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(247, 121, 121);
+            color: white;
+            &:hover{
+                box-shadow: -1px 2px 7px 3px rgba(248, 248, 248, 0.5) inset;
+            }
+        }
+    }
 }

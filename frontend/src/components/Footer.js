@@ -1,4 +1,4 @@
-import logo from '../images/icon-left-font-monochrome-black.png'
+import logo from '../images/icon-left-font-monochrome-white.png'
 import '../styles/footer.scss'
 
 function Footer () {

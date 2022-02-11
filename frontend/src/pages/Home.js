@@ -1,13 +1,16 @@
-import '../styles/home.scss'
+import Login from '../components/home/Login';
+import Signup from '../components/home/Signup';
+import '../styles/home.scss';
 
 const Home = () => {
     return (
-        <>
-            <h1 className='home-title'>Accueil</h1>
-            <form>
-                <input type="text"></input>
-            </form>
-        </>
+        <div className='home'>
+            <h1 className='home-title'>Bienvenue sur le forum de Groupomania</h1>
+            <div className="home-container">
+                <Signup/>
+                <Login/>
+            </div>
+        </div>
     );
 }
 export default Home;
