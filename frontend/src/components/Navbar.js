@@ -4,24 +4,19 @@ import { NavLink } from 'react-router-dom';
 import '../styles/navbar.scss'
 
 function Navbar () {
+    const getToken = window.localStorage.getItem("token")
     return(
         <div className='navbar'>
             <div className='navbar-links'>
-                {navlinks.map((item, index) => (
-                    <Fragment key={index + item.title}>
-                        <li>
-                            <>
-                                {(item.link)
-                                    ? <NavLink link to={{pathname:`${item.link}`}}>
-                                        {item.title}
-                                        </NavLink>
-                                    : <h2>{item.title}</h2>
-                                }
-                            </>
-                        </li>
-                    </Fragment>
-                ))
-                }
+                <li>
+                    <NavLink link to={{pathname:"/home"}}>Accueil</NavLink>
+                    {(getToken) && 
+                        <>
+                            <NavLink link to={{pathname:"/feed"}}>Actus</NavLink>
+                            <NavLink link to={{pathname:"/profile"}}>Profil</NavLink>
+                        </>
+                    }
+                </li>
             </div>
             <button className='navbar-btn-disconnect' onClick={(e) => {window.localStorage.clear(e); window.location.replace("/home");}}>Deconnexion</button>
         </div>

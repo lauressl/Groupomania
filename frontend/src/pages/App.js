@@ -14,7 +14,9 @@ import Profile from './Profile';
 
 
 function App() {
- 
+
+  const getToken = window.localStorage.getItem("token")
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -24,8 +26,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Home" element={<Home />} />
-              <Route path="/Feed" element={<Feed />} />
-              <Route path="/Profile" element={<Profile />} />
+              {(getToken) &&
+               <>
+                  <Route path="/Feed" element={<Feed />} />
+                  <Route path="/Profile" element={<Profile />} />
+               </>
+              }
             </Routes>
         </main>
         <Footer />
