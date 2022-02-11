@@ -23,7 +23,6 @@ const Post = () => {
                 }
             })
             .then ((res) => {
-                console.log(res.data.posts)
                 setData(res.data.posts)
             });
         } catch (error) {
@@ -31,16 +30,14 @@ const Post = () => {
         }
     };
 
-    
-
-    console.log(data);
-
     return(
-        <div className='feed-post-container'>
+        <div className='feed-container'>
             {data.map((posts, index) => (
                 <Fragment key={"post" + index}>
-                    <h3>{posts.title}</h3>
-                    <p>{posts.content}</p>
+                    <div className='feed-post'>
+                        <h3>{posts.title}</h3>
+                        <p>{posts.content}</p>
+                    </div>
                 </Fragment>
             ))}
         </div>

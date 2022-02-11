@@ -10,6 +10,7 @@ const Login = () => {
     //Init states
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     //Login request
     const connectUser = async () => {
@@ -19,15 +20,18 @@ const Login = () => {
                 password : userPassword
             })
             .then ((res) => {
-                window.localStorage.setItem("token", res.data.token)
-                alert ("Content de vous revoir");
-                window.location.replace("/feed");
+                console.log(res)
+                if(res.status === 201) {
+                    window.localStorage.setItem("token", res.data.token);
+                    alert ("Content de vous revoir");
+                    window.location.replace("/feed");
+                }
+                else{
+                    setErrorMessage(JSON.stringify(res.data))
+                }
             });
         } catch (error) {
-            if(!userPassword || !userEmail){
-                alert("veuillez entrer vos identifiants")
-            }
-            console.log(error.response.request._response);
+            console.log(error);
         }
     };
     return(
@@ -43,6 +47,7 @@ const Login = () => {
                     <input type="password" label="Mot de passe" onChange={(e) => {setUserPassword(e.target.value)}}></input>
                 </label>
             </form>
+            <p>{errorMessage}</p>
             <button onClick ={(e) => connectUser(e)}> Se connecter</button>
         </div>
     )

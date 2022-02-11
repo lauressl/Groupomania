@@ -6,21 +6,24 @@ import '../styles/navbar.scss'
 function Navbar () {
     return(
         <div className='navbar'>
-            {navlinks.map((item, index) => (
-                <Fragment key={index + item.title}>
-                    <li>
-                        <>
-                            {(item.link)
-                                ? <NavLink link to={{pathname:`${item.link}`}}>
-                                    {item.title}
-                                    </NavLink>
-                                : <h2>{item.title}</h2>
-                            }
-                        </>
-                    </li>
-                </Fragment>
-            ))
-            }
+            <div className='navbar-links'>
+                {navlinks.map((item, index) => (
+                    <Fragment key={index + item.title}>
+                        <li>
+                            <>
+                                {(item.link)
+                                    ? <NavLink link to={{pathname:`${item.link}`}}>
+                                        {item.title}
+                                        </NavLink>
+                                    : <h2>{item.title}</h2>
+                                }
+                            </>
+                        </li>
+                    </Fragment>
+                ))
+                }
+            </div>
+            <button className='navbar-btn-disconnect' onClick={(e) => {window.localStorage.clear(e); window.location.replace("/home");}}>Deconnexion</button>
         </div>
     );
 };

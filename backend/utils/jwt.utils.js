@@ -15,7 +15,7 @@ module.exports = {
         },
         secretToken,
         {
-            expiresIn: '1h'
+            expiresIn: '2h'
         })
     }
 }

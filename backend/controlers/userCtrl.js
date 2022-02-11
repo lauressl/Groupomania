@@ -14,8 +14,8 @@ module.exports = {
         const email = req.body.email;
         const password = req.body.password;
 
-        if (username == null || email == null || password == null){
-            return res.status(400).json({ 'error' : 'missing parameters'});
+        if (username === null || email === null || password === null){
+            return res.status(400).json({ 'Erreur' : "Tous le schamps sont requis"});
         }
 
         //Verify user's informations securirty
@@ -23,10 +23,10 @@ module.exports = {
         let validatePwd = validator.isStrongPassword(req.body.password)
         
         if(validateMail == false){
-            return res.status(200).json({ 'error': 'please enter a valid email adress'})
+            return res.status(200).json( "Veuillez entrer une adresse mail valide")
         }
         if(validatePwd== false){
-            return res.status(200).json({ 'error': 'please enter a valid password'})
+            return res.status(200).json({ 'Erreur': "Veuillez entrer un mot de passe valide"})
         }
         //check if user exist
         models.user.findOne({
@@ -49,16 +49,16 @@ module.exports = {
                         })
                     })
                     .catch(function(err){
-                        return res.status(500).json({ 'error': 'cannot add user'});
+                        return res.status(500).json({ 'Erreur': "L'utilisateur ne peut pas être créé"});
                     });
                 });
             }
             else{
-                return res.status(200).json({ 'error': 'user already exist'});
+                return res.status(200).json({ 'Erreur': "L'utilisateur existe déjà"});
             }
         })
         .catch(function(err){
-            return res.status(500).json({ 'error': 'unable to verify user'});
+            return res.status(500).json({ 'Erreur': "L'utilisateur ne peut pas être vérifié"});
         })
     },
 
@@ -68,8 +68,8 @@ module.exports = {
         const email = req.body.email;
         const password = req.body.password;
         
-        if(email == null || password == null){
-            return res.status(400).json({ 'error': 'missing parameters'});
+        if(email === null || password === null){
+            return res.status(400).json({ 'Erreur': "Veuillez entrer un email et un mot de passe"});
         }
 
         //check if user exist
@@ -81,23 +81,23 @@ module.exports = {
                 //check if password is valid
                 bcrypt.compare(password, userFound.password, function(errBycrypt, resBycrypt){
                     if(resBycrypt){
-                        return res.status(200).json({
+                        return res.status(201).json({
                             'userId': userFound.id,
                             'token': jwtUtils.generateUserToken(userFound),
                             'isAdmin': userFound.isAdmin
                         });
                     }
                     else{
-                        return res.status(403).json({ 'error': 'invalid password'});
+                        return res.status(403).json({ 'Erreur': "Mot de passe invalide"});
                     }
                 });
             }
             else{
-                return res.status(404).json({ 'error': 'user does not exist in DB'});
+                return res.status(404).json({ 'Erreur': "L'utilisateur n'existe pas"});
             }
         })
         .catch(function(err){
-            return res.status(500).json({ 'error': 'unable to verify user'});
+            return res.status(500).json({ 'Erreur': "L'utilisateur ne peut pas être vérifié"});
         });
     }
 }
