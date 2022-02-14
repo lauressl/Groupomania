@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const models = require("./models");
 
@@ -30,6 +31,8 @@ app.use(function(req, res, next) {
 app.get("/", function (req, res) {
     res.send(`<meta http-equiv="refresh" content="0; url=${process.env.FRONT_URL}"/>`)
 });
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //Sync database
 const sequelize = new Sequelize(process.env.NAME_BDD, process.env.USER_BDD, process.env.PWD_BDD, {

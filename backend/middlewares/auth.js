@@ -8,12 +8,13 @@ module.exports =(req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.JWT_SIGN_SECRET);
         const userId = decodedToken.userId;
         const userAdmin = decodedToken.isAdmin;
-        console.log(token, decodedToken, userId);
+        const username = decodedToken.userName;
+        console.log(token, decodedToken, userId, username);
         if (req.body.userId && req.body.userId !== userId){
             throw 'User ID non valable !' ;
         }
         else {
-            req.userAuth = {id: userId, admin: userAdmin},
+            req.userAuth = {id: userId, admin: userAdmin, userName: username},
             next();
         }
     }

@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-import navlinks from './navlinks.json'
 import { NavLink } from 'react-router-dom';
 import '../styles/navbar.scss'
 
@@ -18,7 +16,9 @@ function Navbar () {
                     }
                 </li>
             </div>
-            <button className='navbar-btn-disconnect' onClick={(e) => {window.localStorage.clear(e); window.location.replace("/home");}}>Deconnexion</button>
+            {(getToken) &&
+                <button className='navbar-btn-disconnect' onClick={(e) => {window.localStorage.clear(e); window.location.replace("/home");}}>Deconnexion</button>
+            }
         </div>
     );
 };

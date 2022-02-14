@@ -10,6 +10,7 @@
     "dotenv": "^10.0.0",
     "env-cmd": "^10.1.0",
     "fs": "0.0.1-security",
+    "moment": "^2.29.1",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

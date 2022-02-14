@@ -25,8 +25,9 @@ module.exports = {
       attachement: {
         type: Sequelize.STRING
       },
-      likes: {
-        type: Sequelize.INTEGER
+      username: {
+        type: DataTypes.STRING,
+        allowNull: true
       },
       createdAt: {
         allowNull: false,

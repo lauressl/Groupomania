@@ -11,7 +11,8 @@ module.exports = {
     generateUserToken: function(userData){
         return jwt.sign({
             userId: userData.id,
-            isAdmin: userData.isAdmin
+            isAdmin: userData.isAdmin,
+            userName: userData.username
         },
         secretToken,
         {

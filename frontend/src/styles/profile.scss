@@ -1,11 +1,12 @@
 .profile{
+    min-height: auto;
     &-logo{
         width: 100px;
     }
     &-btn-disconnect{
         border: none;
         margin: 10px 0 10px 0;
-        height: 45px;
+        height: 35px;
         font-weight: 500;
         background-color: rgb(241, 8, 8);
         color: blanchedalmond;

@@ -8,12 +8,13 @@ module.exports = {
     publishPost: async function (req, res){
         //params
         try {
-            console.log("coucou");
             const title = req.body.title;
             const content = req.body.content;
-            const user = req.userAuth.id;
-            let attachement;
+            const userId = req.userAuth.id;
+            const userName = req.userAuth.userName;
 
+            console.log(userName);
+            let attachement;
             if(req.file){
                attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
             }
@@ -21,9 +22,9 @@ module.exports = {
             await models.post.create({
                 title: title,
                 content: content,
-                userId: user,
-                attachement: attachement,
-                likes:0
+                userId: userId,
+                username: userName,
+                attachement: attachement
             })
             return res.status(200).json({'message': "message envoyé"})
         }
@@ -33,9 +34,7 @@ module.exports = {
     },
     getAllPosts: async function(req, res){
         try{
-            console.log("getPost");
             const post = await models.post.findAll();
-            console.log("All posts:", JSON.stringify(post));
             return res.status(200).json({'posts': post})
         }
         catch(err){

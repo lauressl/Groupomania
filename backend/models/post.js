@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         key:'id'
       }
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     attachement: {
       type: DataTypes.STRING,
       allowNull: true,
