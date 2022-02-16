@@ -15,34 +15,64 @@
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: center;
-        width: 50%;
+        width: 100%;
         height: auto;
         margin: 30px 0 30px 0;
+        .connection-form{
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+            width: 40%;
+            margin: 0 0 30px 0;
+            background-color: rgba(243, 243, 243, 0.64);
+            box-shadow: -1px 2px 7px 3px rgba(191,177,177,0.64);
+            &:hover{
+                box-shadow: -1px 2px 7px 3px rgb(247, 121, 121);
+            }
+            .form-container{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: auto;
+                justify-content: center;
+                ul{
+                    display: flex;
+                    list-style: none;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                    justify-content: space-around;
+                    li{
+                        width: 100%;
+                        background-color: rgb(247, 121, 121);
+                        cursor:pointer;
+                        &.active-btn{
+                            width: 100%;
+                            background-color: rgba(243, 243, 243, 0.64);
+                            border:none;
+                        }
+                    }
+                }
+            }
+        }
     }
     
     &-signup, &-login{
         display: flex;
         flex-direction: column;
-        height: auto;
-        width: auto;
-        margin: 0 0 30px 0;
-        background-color: rgba(243, 243, 243, 0.64);
-        box-shadow: -1px 2px 7px 3px rgba(191,177,177,0.64);
-        &:hover{
-            box-shadow: -1px 2px 7px 3px rgb(247, 121, 121);
-        }
+        align-content: center;
+        height: fit-content;
         h2{
             color: red;
         }
         form{
             display: flex;
             flex-direction: column;
-            width: auto;
+            align-self: center;
+            width: 80%;
             padding: 10px;
         }
         label{
-            display: flex;
-            flex-direction: column;
             margin-bottom: 10px;
             text-align: left;
             input{

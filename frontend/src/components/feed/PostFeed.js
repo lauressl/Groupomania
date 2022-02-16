@@ -1,6 +1,8 @@
 import { useState, useEffect, Fragment } from 'react';
-import '../../styles/home.scss';
+import '../../styles/feed.scss';
 import moment from 'moment';
+
+import Comment from './Comment';
 
 const PostFeed = ({updateFeed}) => {
     const [getFeed, setGetFeed]= useState([]);
@@ -17,10 +19,10 @@ const PostFeed = ({updateFeed}) => {
                     <div className='feed-post'>
                         <div className='feed-post-head'>
                             <p className='feed-post-head-user'>{posts.username}</p>
-                            <h2>{posts.title}</h2>
-                            <p>{moment(posts.createdAt).startOf('day').fromNow()}</p>
+                            <p className='feed-post-head-time'>{moment(posts.createdAt).startOf('day').fromNow()}</p>
                         </div>
                         <div className='feed-post-content'>
+                            <h2>{posts.title}</h2>
                             {(posts.content) &&
                                 <p>{posts.content}</p>
                             }
@@ -29,7 +31,11 @@ const PostFeed = ({updateFeed}) => {
                             }
                             
                         </div>
+                        <Comment 
+                            postId = {posts.id}
+                        />
                     </div>
+                    
                 </Fragment>
             ))}
         </div>

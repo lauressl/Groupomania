@@ -13,8 +13,9 @@ h1{
   color: red;
 }
 main{
-  height: 60%;
-  overflow: scroll;
+  max-height: 1200px;
+  overflow-x:hidden;
+  overflow-y: auto;
 }
 /* @keyframes App-logo-spin {
   from {

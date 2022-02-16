@@ -2,41 +2,56 @@
 import '../styles/app.scss';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import  { useState, useEffect } from 'react' ;
+import { Provider } from 'react-redux';
 
 //COMPONENTS
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Home from './Home';
 import Feed from './Feed';
 import Profile from './Profile';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../action/user.actions';
+import { UidContext } from '../components/AppContext';
+
 
 
 function App() {
 
+  const [uid, setuid] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setuid(window.localStorage.getItem("uid"));
+    if (uid)
+      dispatch(getUser(uid))
+  }, [uid]);
+  
+
   const getToken = window.localStorage.getItem("token")
   
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Navbar />
-        <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Home" element={<Home />} />
-              {(getToken) &&
-               <>
-                  <Route path="/Feed" element={<Feed />} />
-                  <Route path="/Profile" element={<Profile />} />
-               </>
-              }
-            </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <UidContext.Provider value={uid}>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/Home" element={<Home />} />
+
+                {(getToken) &&
+                <>
+                    <Route path="/Feed" element={<Feed />} />
+                    <Route path="/Profile" element={<Profile />} />
+                </>
+                }
+              </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
+    </UidContext.Provider>
   );
 }
 

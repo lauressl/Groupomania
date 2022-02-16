@@ -3,7 +3,28 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    height: 55px;
     background-color: rgb(247, 121, 121);
+    box-shadow: -1px 2px 7px 3px rgb(247, 121, 121);
+    &-left{
+        display: flex;
+    }
+    &-right{
+        display: flex;
+        &-link{
+            margin-right: 10px;
+            text-decoration: none;
+            align-self: center;
+            color: black;
+            &:hover{
+                color: white;
+            }
+        }
+    }
+    &-logo{
+        height:100%;
+        width: fit-content;
+    }
     &-links{
         display: flex;
         flex-direction: row;
@@ -16,11 +37,12 @@
             list-style: none;  
             display: flex;
             margin-right: 25px;
+            height: auto;
             a{
                 display: flex; 
                 align-items: center;
                 justify-content: center;
-                height: 45px;
+                height: auto;
                 width: 100px;
                 font-weight: 500;
                 font-size: 20px;

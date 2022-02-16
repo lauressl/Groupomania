@@ -34,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    attachement: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

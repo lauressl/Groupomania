@@ -1,7 +1,34 @@
 .profile{
     min-height: auto;
-    &-logo{
-        width: 100px;
+    width: 100%;
+    &-container{
+        .update-container{
+            display: flex;
+            justify-content: space-evenly;
+            width: 60%;
+            margin: auto;
+            .left-part{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                img{
+                    width: 100px;
+                }
+                .upload-pic{
+                    display:flex;
+                    flex-direction: column;
+                    label{
+                        margin: 10px 0 10px 0;
+                    }
+                }
+            }
+            .right-part{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }  
     }
     &-btn-disconnect{
         border: none;

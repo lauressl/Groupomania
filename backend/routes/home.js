@@ -9,4 +9,7 @@ router.post('/signup', userCtrl.signup);
 //Login
 router.post('/login', userCtrl.login);
 
+//auth
+//router.get('/jwtid', userCtrl.requireAuth);
+
 module.exports = router;

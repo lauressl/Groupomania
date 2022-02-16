@@ -37,10 +37,15 @@ module.exports = {
             if ((!userFound) && (validateMail === true) && (validatePwd === true)){
                 //encrypted password
                 bcrypt.hash(password, 5, function(err, bcryptedPwd){
+                    let attachement;
+                        if(req.file){
+                        attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+                        }
                     const newUser = models.user.create({
                         username: username,
                         email: email,
                         password: bcryptedPwd,
+                        attachement: attachement,
                         isAdmin: 0
                     })
                     .then(function(newUser){
@@ -93,11 +98,11 @@ module.exports = {
                 });
             }
             else{
-                return res.status(404).json({ 'Erreur': "L'utilisateur n'existe pas"});
+                return res.status(403).json({ 'Erreur': "L'utilisateur n'existe pas"});
             }
         })
         .catch(function(err){
             return res.status(500).json({ 'Erreur': "L'utilisateur ne peut pas être vérifié"});
         });
-    }
+    },
 }

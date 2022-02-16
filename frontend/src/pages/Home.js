@@ -1,22 +1,28 @@
-import Login from '../components/home/Login';
-import Signup from '../components/home/Signup';
+//PAGES
+import Log from '../components/home/Log';
 import '../styles/home.scss';
+import logo from '../images/icon-above-font2.png';
+
+
+//UTILS
+import { useSelector } from 'react-redux';
+
 
 const Home = () => {
     const getToken = window.localStorage.getItem("token")
+
+    //Dispatch user infos
+    const userData = useSelector((state) => state.userReducer);
     return (
         <div className='home'>
-            <h1 className='home-title'>Bienvenue sur le forum de Groupomania</h1>
+            <img src={logo} className="App-logo" alt="logo" />
             <div className="home-container">
                 {(!getToken) &&
-                <>
-                    <Signup/>
-                    <Login/>
-                </>
+                    <Log />
                 }
                 {(getToken)&&
                  <>
-                    <p>Retrouvez vos actualités sur le feed</p>
+                    <p>Bienvenue {userData.username}</p>
                  </>
                 }
             </div>

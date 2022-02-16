@@ -34,7 +34,11 @@ module.exports = {
     },
     getAllPosts: async function(req, res){
         try{
-            const post = await models.post.findAll();
+            const post = await models.post.findAll({
+                order: [
+                    ['createdAt', 'DESC'], 
+                ]
+            })
             return res.status(200).json({'posts': post})
         }
         catch(err){

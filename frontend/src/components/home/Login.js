@@ -8,8 +8,8 @@ const Login = () => {
     const ipServ = process.env.REACT_APP_IP_SERVER;
 
     //Init states
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
+    const [userEmail, setUserEmail] = useState(null);
+    const [userPassword, setUserPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
     //Login request
@@ -23,10 +23,13 @@ const Login = () => {
                 console.log(res)
                 if(res.status === 201) {
                     window.localStorage.setItem("token", res.data.token);
+                    window.localStorage.setItem("uid", res.data.userId);
+
                     alert ("Content de vous revoir");
                     window.location.replace("/feed");
                 }
                 else{
+                    console.log(res.error);
                     setErrorMessage(JSON.stringify(res.data))
                 }
             });
