@@ -89,6 +89,35 @@
             border-radius: 6px;
             margin-top: 12px;
             box-shadow: 0 0 3px rgba(51, 51, 51, 0.342);
-          }
+        }
+    }
+    .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-between;
+        padding: 12px 0 4px;
+
+        img {
+            height: 22px;
+            width: 22px;
+            cursor: pointer;
+            transition: 0.2s;
+
+            &:hover {
+              transform: scale(1.2);
+            }
+        }
+        .comment-icon,
+        .like-container {
+            display: flex;
+            align-items: center;
+
+            span {
+                font-size: 1.02rem;
+                position: absolute;
+                transform: translate(29px, 2px);
+            }
+        }
     }
 }

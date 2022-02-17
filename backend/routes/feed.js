@@ -18,7 +18,7 @@ router.delete('/post/:id', auth, postCtrl.deletePost);
 
 //Comment
 router.post('/post/comment', auth, commentCtrl.commentPost);
-router.get('/post/comment', auth, commentCtrl.getAllComments);
+router.get('/post/comment/:postId', auth, commentCtrl.getAllComments);
 router.delete('/post/comment/:postId', auth, commentCtrl.deleteComment);
 
 

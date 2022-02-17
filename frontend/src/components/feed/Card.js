@@ -1,19 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import '../../styles/_card.scss'
+import '../../styles/card.scss'
 import { dateParser, isEmpty } from '../utils';
+import commentLogo from '../../images/message1.svg';
+import axios from 'axios';
+import LikeButton from './LikeButton';
 
 const Card = ({post}) => {
     const [isLoading, setisLoading] = useState(true);
     const usersData = useSelector((state) => state.usersReducer);
     const userData = useSelector((state) => state.userReducer);
 
-    const dispatch = useDispatch();
-
 
     useEffect(() => {
       !isEmpty(usersData[0]) && setisLoading(false);
     }, [usersData])
+
+    /****COUNTCOMMENTS****/
+    const ipServ=process.env.REACT_APP_IP_SERVER;
+
+    const [numComment, setnumComment] = useState('');
+
+    const getComments = async (post) => {
+        try {
+            await axios.get(ipServ + `/api/feed/post/comment/${post.id}`,
+            {
+                headers:{
+                    Authorization: `Bearer ${window.localStorage.getItem("token")}`
+                }
+            })
+            .then ((res) => {
+                console.log(res.data.comments);
+                setnumComment(res.data.comments)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getComments(post)
+    }, [post])
+    
     
 
   return (
@@ -55,9 +82,12 @@ const Card = ({post}) => {
                 </div>
                 <div className='card-footer'>
                     <div className='comment-icon'>
-                        <img src='../images/message1.svg' alt="comment-pic"/>
-                        <span>{}</span>
+                        <img src={commentLogo} alt="comment-pic"/>
+                        <span>{numComment.count}</span>
                     </div>
+                    <LikeButton
+                        post={post}
+                    />
                 </div>
             </>
         )}
