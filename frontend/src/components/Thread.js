@@ -7,14 +7,25 @@ import { isEmpty } from './utils';
 const Thread = () => {
 
     const [loadPost, setloadPost] = useState(true);
+    const [count, setcount] = useState(5);
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.postReducer);
 
+    const loadMore = () => {
+        if (window.innerHeight + document.documentElement.scrollTop + 1 > document.scrollingElement.scrollHeight){
+            setloadPost(true);
+            setcount(count + 5);
+        }
+    };
+
     useEffect(() => {
       if (loadPost) {
-        dispatch(getPosts());
+        dispatch(getPosts(count));
         setloadPost(false)
       }
+
+      window.addEventListener('scroll', loadMore);
+      return () => window.removeEventListener('scroll', loadMore);
     }, [loadPost, dispatch])
     
   return (

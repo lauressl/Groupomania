@@ -7,7 +7,7 @@ export const GET_COMMENTS = "GET_COMMENTS";
 
 const ipServ=process.env.REACT_APP_IP_SERVER;
 
-export const getPosts = () => { 
+export const getPosts = (num) => { 
     return (dispatch) => {
         return axios.get(ipServ + '/api/feed/post/all',{
             headers:{
@@ -15,7 +15,8 @@ export const getPosts = () => {
             }
         })
         .then ((res) => {
-            dispatch({ type: GET_POSTS, payload: res.data.posts})
+            const array = res.data.posts.slice(0, num)
+            dispatch({ type: GET_POSTS, payload: array})
         })
         .catch((err) => console.log(err));
     };

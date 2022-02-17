@@ -12,6 +12,7 @@ const LikeButton = ({post}) => {
     /*****GET LIKES********/
     const ipServ=process.env.REACT_APP_IP_SERVER;
     const [likes, setLikes] = useState([]);
+    const [countLike, setcountLike] = useState(0);
     const getLikes = async (post) => {
         try {
             await axios.get(ipServ + `/api/feed/post/like/${post.id}`,
@@ -22,7 +23,8 @@ const LikeButton = ({post}) => {
             })
             .then ((res) => {
                 console.log(res.data.likes.rows);
-                setLikes(res.data.likes.rows)
+                setLikes(res.data.likes.rows);
+                setcountLike(res.data.likes.count);
             });
         } catch (error) {
             console.log(error);
@@ -30,7 +32,51 @@ const LikeButton = ({post}) => {
     };
     useEffect(() => {
         getLikes(post)
-    }, [post])
+    }, [post, liked])
+
+    /*****LIKE******/
+    const likePost = async () => {
+        let postId = post.id
+        try {
+            await axios.post(ipServ + `/api/feed/post/like`,
+            {
+                postId: postId
+            },
+            {
+                headers:{
+                    Authorization: `Bearer ${window.localStorage.getItem("token")}`
+                }
+            })
+            .then ((res) => {
+                console.log(res.data);
+                setliked(true);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    /*****LIKE******/
+    const unlikePost = async () => {
+        let postId = post.id
+        try {
+            await axios.delete(ipServ + `/api/feed/post/unlike/${postId}`,
+            {
+                postId: postId
+            },
+            {
+                headers:{
+                    Authorization: `Bearer ${window.localStorage.getItem("token")}`
+                }
+            })
+            .then ((res) => {
+                console.log(res.data);
+                setliked(false);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
     
     /****SET LIKES*****/
     const checkLikes = () =>{
@@ -41,19 +87,25 @@ const LikeButton = ({post}) => {
     }
     useEffect((likes) => {
         checkLikes(likes)
-    }, [uid])
+    }, [uid, liked, likes])
 
     console.log(liked)
     
   return (
     <div className='like-container'>
         {uid && liked === false && (
-            <img src={likeLogo} /* onClick={like}  */alt="like" />
+            <>
+                <img src={likeLogo}  onClick={likePost}  alt="liked" />
+                <span>{countLike}</span>
+            </>
         )}
         {uid && liked && (
-            <img src={likeLogoFilled} /* onClick={like}  */alt="liked" />
+            <>
+                <img src={likeLogoFilled} onClick={unlikePost} alt="liked" />
+                <span>{countLike}</span>
+            </>
         )}
-
+        
     </div>
   )
 }
