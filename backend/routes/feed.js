@@ -24,6 +24,7 @@ router.delete('/post/comment/:postId', auth, commentCtrl.deleteComment);
 
 //Likes
 router.post('/post/like', auth, likeCtrl.likePosts);
+router.delete('/post/unlike/:postId', auth, likeCtrl.unlikePosts);
 router.get('/post/like/:postId', auth, likeCtrl.getAllLike);
 
 

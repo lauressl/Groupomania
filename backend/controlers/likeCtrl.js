@@ -47,6 +47,63 @@ module.exports = {
             return res.status(500).json({'error': `${err}`})
         }
     },
+    unlikePosts: async function(req, res){
+        try{
+            console.log("unLike post")
+            const user = req.userAuth.id;
+            const post = req.body.postId;
+
+            await models.like.findOne({
+                where:{ 
+                    userId: user,
+                    postId: post 
+                }
+            })
+            .then(function(likeFound){
+                if(likeFound){
+                    models.like.destroy({
+                        where: {
+                            userId: user,
+                            postId: post
+                        }
+                    })
+                    return res.status(200).json({'message': "Vous unlikez le  posts "})
+                }
+                else {
+                    return res.status(300).json({'message': "Vous avez déjà unliké le post "})
+                }
+            })
+            
+        }
+        catch(err){
+            return res.status(500).json({'error': `${err}`})
+        }
+    },
+    /* unlikePosts: async function(req,res){
+        //params
+        //get id from auth middleware and attached it to the request
+        const userId = req.userAuth.id;
+        const admin = req.userAuth.admin;
+        const postId = req.body.postId;
+
+        console.log("del like")
+        if(userId || admin) {
+            try {
+                await models.like.destroy({
+                    where: {
+                        userId: userId,
+                        postId: postId
+                    }
+                })
+                res.status(201).json({'message': 'Vous unlikez le post'});
+            
+            }
+            catch(err){
+                res.status(500).json({ 'error': `${err}`});
+
+            };
+        }
+    }, */
     getAllLike: async function(req, res){
         try{
             console.log("getLikes");
