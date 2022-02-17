@@ -26,7 +26,7 @@ const Login = () => {
                     window.localStorage.setItem("uid", res.data.userId);
 
                     alert ("Content de vous revoir");
-                    window.location.replace("/feed");
+                    window.location.replace("/FeedHome");
                 }
                 else{
                     console.log(res.error);

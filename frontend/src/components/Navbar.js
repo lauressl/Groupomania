@@ -17,6 +17,7 @@ function Navbar () {
                     {(getToken) && 
                         <>
                             <NavLink link to={{pathname:"/feed"}}>Actus</NavLink>
+                            <NavLink link to={{pathname:"/FeedHome"}}>Fil</NavLink>
                             
                         </>
                     }

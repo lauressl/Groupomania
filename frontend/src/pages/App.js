@@ -1,12 +1,11 @@
 
-import '../styles/app.scss';
+import '../styles/index.scss';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import  { useState, useEffect } from 'react' ;
 import { Provider } from 'react-redux';
 
 //COMPONENTS
-import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Home from './Home';
 import Feed from './Feed';
@@ -14,6 +13,7 @@ import Profile from './Profile';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../action/user.actions';
 import { UidContext } from '../components/AppContext';
+import FeedHome from './FeedHome';
 
 
 
@@ -43,7 +43,8 @@ function App() {
 
                 {(getToken) &&
                 <>
-                    <Route path="/Feed" element={<Feed />} />
+                    {/* <Route path="/Feed" element={<Feed />} /> */}
+                    <Route path="/FeedHome" element={<FeedHome />} />
                     <Route path="/Profile" element={<Profile />} />
                 </>
                 }

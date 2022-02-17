@@ -37,7 +37,7 @@ module.exports = {
             if ((!userFound) && (validateMail === true) && (validatePwd === true)){
                 //encrypted password
                 bcrypt.hash(password, 5, function(err, bcryptedPwd){
-                    let attachement;
+                    let attachement = 'http://localhost:3001/images/logo-user.png';
                         if(req.file){
                         attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
                         }
@@ -105,4 +105,15 @@ module.exports = {
             return res.status(500).json({ 'Erreur': "L'utilisateur ne peut pas être vérifié"});
         });
     },
+    /******GET ALL USERS*********/
+    getAllUsers: async function(req, res){
+        try{
+            const users = await models.user.findAll({
+            })
+            return res.status(200).json({'users': users})
+        }
+        catch(err){
+            return res.status(500).json({'error': `${err}`})
+        }
+    }
 }

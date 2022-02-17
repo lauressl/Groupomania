@@ -1,7 +1,7 @@
 const express = require('express');
-const { updateProfile } = require('../controlers/profileCtrl');
 const router = express.Router();
 const profileCtrl = require('../controlers/profileCtrl');
+const userCtrl = require('../controlers/userCtrl');
 
 const auth = require('../middlewares/auth');
 const multer = require('../middlewares/multer-config')
@@ -12,6 +12,9 @@ router.get('/me', auth, profileCtrl.getProfile);
 //router.post('/me');
 router.delete('/me', auth, profileCtrl.deleteProfile);
 router.put('/me', auth, multer, profileCtrl.updateProfile);
+
+//All Users
+router.get('/all', auth, userCtrl.getAllUsers);
 
 //User post
 //router.get('/me/post');

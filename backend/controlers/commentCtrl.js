@@ -24,7 +24,6 @@ module.exports = {
             console.log("getComments");
             console.log("req", req.params)
             const comments = await models.comment.findAll({
-                where: {postId: req.body.postId}
             });
             console.log("All comments:", JSON.stringify(comments));
             return res.status(200).json({'comments': comments})
