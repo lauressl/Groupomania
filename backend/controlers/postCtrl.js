@@ -78,9 +78,9 @@ module.exports = {
         //get id from auth middleware and attached it to the request
         const userId = req.userAuth.id;
         const admin = req.userAuth.admin;
-        const postId = req.params.id;
+        const postId = req.body.postId;
 
-        console.log("del comment")
+        console.log("del post")
         if(userId || admin) {
             try {
                 await models.post.destroy({

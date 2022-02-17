@@ -7,6 +7,7 @@ import editLogo from '../../images/edit.svg';
 import axios from 'axios';
 import LikeButton from './LikeButton';
 import { updatePost } from '../../action/post.actions';
+import DeleteCard from './DeleteCard';
 
 const Card = ({post}) => {
     const [isLoading, setisLoading] = useState(true);
@@ -107,10 +108,13 @@ const Card = ({post}) => {
                         }
                 </div>
                 {userData.id === post.userId &&
-                    <div>
+                    <div className='btn-container'>
                         <div onClick={() => setisUpdated(!isUpdated)}>
                             <img src={editLogo} alt='edit-logo'/>
                         </div>
+                        <DeleteCard
+                            id={post.id}
+                        />
                     </div>
                 }
                 <div className='card-footer'>
@@ -120,6 +124,7 @@ const Card = ({post}) => {
                     </div>
                     <LikeButton
                         post={post}
+                        userId={userData.id}
                     />
                 </div>
             </>
