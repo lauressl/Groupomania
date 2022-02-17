@@ -23,7 +23,7 @@ router.delete('/post/comment/:postId', auth, commentCtrl.deleteComment);
 
 
 //Likes
-router.post('/post/like', auth, likeCtrl.likePost);
+router.post('/post/like', auth, likeCtrl.likePosts);
 router.get('/post/like/:postId', auth, likeCtrl.getAllLike);
 
 

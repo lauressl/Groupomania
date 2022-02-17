@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import likeLogo from '../../images/heart.svg';
+import likeLogoFilled from '../../images/heart-filled.svg'
 
 const LikeButton = ({post}) => {
     const [liked, setliked] = useState(false);
@@ -40,15 +41,18 @@ const LikeButton = ({post}) => {
     }
     useEffect((likes) => {
         checkLikes(likes)
-    }, [uid, liked])
+    }, [uid])
 
     console.log(liked)
     
   return (
     <div className='like-container'>
         {uid && liked === false && (
-        <img src={likeLogo} /* onClick={like}  */alt="like" />
-      )}
+            <img src={likeLogo} /* onClick={like}  */alt="like" />
+        )}
+        {uid && liked && (
+            <img src={likeLogoFilled} /* onClick={like}  */alt="liked" />
+        )}
 
     </div>
   )
