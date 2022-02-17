@@ -3,14 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../../styles/card.scss'
 import { dateParser, isEmpty } from '../utils';
 import commentLogo from '../../images/message1.svg';
+import editLogo from '../../images/edit.svg';
 import axios from 'axios';
 import LikeButton from './LikeButton';
+import { updatePost } from '../../action/post.actions';
 
 const Card = ({post}) => {
     const [isLoading, setisLoading] = useState(true);
+    const [isUpdated, setisUpdated] = useState(false);
+    const [textUpdate, settextUpdate] = useState(null);
+
+    const dispatch = useDispatch();
+
     const usersData = useSelector((state) => state.usersReducer);
     const userData = useSelector((state) => state.userReducer);
 
+    const updateItem =  () => {
+        if (textUpdate) {
+            dispatch(updatePost(post.id, textUpdate))
+        }
+        setisUpdated(false);
+    }
 
     useEffect(() => {
       !isEmpty(usersData[0]) && setisLoading(false);
@@ -75,11 +88,31 @@ const Card = ({post}) => {
                         </div>
                         <span>{dateParser(post.createdAt)}</span>   
                     </div>
-                    <p>{post.content}</p>
+                    {isUpdated === false && <p>{post.content}</p>}
+                    {isUpdated && (
+                        <div className='update-post'>
+                            <textarea
+                                defaultValue={post.content}
+                                onChange={(e) => settextUpdate(e.target.value)}
+                            />
+                            <div>
+                                <button onClick={updateItem}>
+                                    Valider modification
+                                </button>
+                            </div>
+                        </div>
+                    )}
                         {post.attachement &&
                             <img src={post.attachement} alt="card-pic" className='card-pic'/>
                         }
                 </div>
+                {userData.id === post.userId &&
+                    <div>
+                        <div onClick={() => setisUpdated(!isUpdated)}>
+                            <img src={editLogo} alt='edit-logo'/>
+                        </div>
+                    </div>
+                }
                 <div className='card-footer'>
                     <div className='comment-icon'>
                         <img src={commentLogo} alt="comment-pic"/>

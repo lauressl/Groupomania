@@ -45,6 +45,34 @@ module.exports = {
             return res.status(500).json({'error': `${err}`})
         }
     },
+    updatePost: async function(req,res){
+        //params
+        //get id from auth middleware and attached it to the request
+        const userId = req.userAuth.id;
+        const postId = req.body.postId;
+        const content = req.body.content
+        let attachement
+        if(req.file){
+            attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+            }
+        if(userId) {
+            try {
+                await models.post.update(
+                    {
+                        content: content,
+                        attachement: attachement
+                    },
+                    {where: {id: postId, userId: userId}
+                })
+                res.status(201).json({'message': 'post updated'});
+            
+            }
+            catch(err){
+                res.status(500).json({ 'error': `${err}`});
+
+            };
+        }
+    },
     deletePost: async function(req,res){
         //params
         //get id from auth middleware and attached it to the request

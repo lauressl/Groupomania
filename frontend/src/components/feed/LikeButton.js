@@ -56,7 +56,7 @@ const LikeButton = ({post}) => {
         }
     };
 
-    /*****LIKE******/
+    /*****UNLIKE******/
     const unlikePost = async () => {
         let postId = post.id
         try {
@@ -70,7 +70,6 @@ const LikeButton = ({post}) => {
                 }
             })
             .then ((res) => {
-                console.log(res.data);
                 setliked(false);
             });
         } catch (error) {

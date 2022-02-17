@@ -15,6 +15,7 @@ const { deletePost } = require('../controlers/postCtrl');
 router.get('/post/all', auth, postCtrl.getAllPosts);
 router.post('/post/publish', auth, multer, postCtrl.publishPost);
 router.delete('/post/:id', auth, postCtrl.deletePost);
+router.put('/post/:id', auth, postCtrl.updatePost);
 
 //Comment
 router.post('/post/comment', auth, commentCtrl.commentPost);
