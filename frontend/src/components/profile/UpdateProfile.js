@@ -10,7 +10,7 @@ import { dateParser } from '../utils';
 const UpdateProfile = () => {
     //Dispatch user infos
     const userData = useSelector((state) => state.userReducer);
-    
+
     return (
         <div className='profile-container'>
             <h1>{userData.username}</h1>
@@ -18,10 +18,13 @@ const UpdateProfile = () => {
                 <div className='left-part'>
                     <h3>Photo de profil</h3>
                     {(userData.attachement)
-                    ? <img src={userData.attachement} alt="user-pic"/>
-                    :<img src={logo} alt="user-pic"/>
+                        ? <img src={userData.attachement} alt="user-pic" />
+                        : <img src={logo} alt="user-pic" />
                     }
-                    <UploadImg />
+                    <UploadImg
+                        email={userData.email}
+                        username={userData.username}
+                    />
                 </div>
                 <div className='right-part'>
                     <h3>Infos du profil</h3>
@@ -34,6 +37,6 @@ const UpdateProfile = () => {
             </div>
         </div>
     )
-    }
+}
 
 export default UpdateProfile;
