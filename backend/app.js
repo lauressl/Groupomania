@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 //requetes
+
 app.use(cors());
 
 app.use(function(req, res, next) {

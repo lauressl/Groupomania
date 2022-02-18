@@ -42,17 +42,20 @@ export const updatePost = (postId, content) => {
     }
 };
 
-export const deletePost = (postId, userId) => {
+export const deletePost = (postId) => {
     return dispatch => {
         return axios.delete(ipServ + `/api/feed/post/${postId}`,
-            {postId : postId, userId: userId },
-            {
+            { 
+                data: {
+                    postId : postId
+                },
+            
                 headers:{
                     Authorization: `Bearer ${window.localStorage.getItem("token")}`
                 }
             })
         .then ((res) => {
-            dispatch({ type: DELETE_POSTS, payload: {postId, userId}})
+            dispatch({ type: DELETE_POSTS, payload: {postId}})
         })
         .catch((err) => console.log(err));
     }
