@@ -61,10 +61,11 @@ const LikeButton = ({post}) => {
         let postId = post.id
         try {
             await axios.delete(ipServ + `/api/feed/post/unlike/${postId}`,
-            {
-                postId: postId
-            },
-            {
+            { 
+                data: {
+                    postId : postId
+                },
+            
                 headers:{
                     Authorization: `Bearer ${window.localStorage.getItem("token")}`
                 }
@@ -86,7 +87,7 @@ const LikeButton = ({post}) => {
     }
     useEffect((likes) => {
         checkLikes(likes)
-    }, [uid, liked, likes])
+    }, [uid, liked, likes, countLike])
 
     console.log(liked)
     
