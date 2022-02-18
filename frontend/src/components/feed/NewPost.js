@@ -1,18 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isEmpty, timestampParser } from "../utils";
 import logoPicture from "../../images/picture.svg"
+import { addPosts, getPosts } from "../../action/post.actions";
 
 const NewPost = () => {
     const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState("");
     const [postPicture, setpostPicture] = useState(null);
+    const [postPicturePreview, setpostPicturePreview] = useState(null);
+
     const [file, setfile] = useState();
+    const [title, settitle] = useState("titre")
     const userData = useSelector((state) => state.userReducer);
 
-    const handlePicture = () => { };
+    const dispatch = useDispatch();
 
-    const handlePost = () => { };
+    const handlePicture = (e) => {
+        setpostPicture(e.target.files[0]);
+        setpostPicturePreview(URL.createObjectURL(e.target.files[0]));
+    };
+
+    console.log(postPicture)
+    const handlePost = async () => {
+        if (post || postPicture) {
+            const data = new FormData();
+            data.append('content', post);
+            data.append('title', title);
+            if (file) data.append("file", file);
+            data.append('attachement', postPicture);
+
+            await dispatch(addPosts(data));
+            dispatch(getPosts());
+            cancelPost();
+        } else {
+            alert("Veuillez créer un post")
+        }
+    };
 
     const cancelPost = () => {
         setpost('');
@@ -49,7 +73,7 @@ const NewPost = () => {
                             </div>
                             <div className="content">
                                 <p>{post}</p>
-                                <img src={postPicture} alt="" />
+                                <img src={postPicturePreview} alt="" />
                             </div>
                         </div>
                     </li>
@@ -63,7 +87,7 @@ const NewPost = () => {
                         type="file"
                         id="file-upload"
                         name="file"
-                        accept=".jpg .jpeg .png"
+                        accept="jpg jpeg png"
                         onChange={(e) => handlePicture(e)}
                     />
                 </div>
