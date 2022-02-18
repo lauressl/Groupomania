@@ -1,6 +1,5 @@
 //PAGES
 import Log from '../components/home/Log';
-import '../styles/home.scss';
 import logo from '../images/icon-above-font2.png';
 
 

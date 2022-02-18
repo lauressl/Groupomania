@@ -1,6 +1,5 @@
 
 import { useState, useEffect, Fragment } from 'react';
-import '../styles/profile.scss';
 import { useSelector } from 'react-redux';
 import UpdateProfile from '../components/profile/UpdateProfile';
 

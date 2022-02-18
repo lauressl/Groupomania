@@ -3,7 +3,6 @@ import { useState, useEffect, Fragment } from 'react';
 
 import PostFeed from '../components/feed/PostFeed';
 import PublishPost from '../components/feed/PublishPost';
-import '../styles/feed.scss'
 
 function Feed () {
     //token

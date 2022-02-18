@@ -85,7 +85,7 @@
             }
         }
         .card-pic {
-            width: 100%;
+            width: fit-content;
             border-radius: 6px;
             margin-top: 12px;
             box-shadow: 0 0 3px rgba(51, 51, 51, 0.342);
@@ -120,30 +120,59 @@
             }
         }
     }
-    .comment-container.client {
-        background: grey;
-        border: none;
-        border-radius: 20px 20px 6px 20px;
-      }
-      .comment-container {
-        display: grid;
-        grid-template-columns: 50px 1fr;
-        border: 1px solid black;
-        padding: 15px;
-        margin: 5px 0;
-        border-radius: 20px 20px 20px 6px;
-  
-        img {
-          height: 40px;
-          width: 40px;
-          border-radius: 14px;
-          box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.192);
-          object-fit: cover;
-  
-          @media screen and(max-width: 440px) {
-            height: 37px;
-            width: 37px;
-          }
+    .comments-container{
+        display:flex;
+        flex-direction: column;
+        .comment-container {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            border: 1px solid black;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 20px 20px 20px 6px;
+
+            img {
+                height: 40px;
+                width: 40px;
+                border-radius: 14px;
+                box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.192);
+                object-fit: cover;
+
+                @media screen and(max-width: 440px) {
+                height: 37px;
+                width: 37px;
+                }
+            }
+            .comment-header {
+                display: flex;
+                justify-content: space-between;
+
+                @media screen and(max-width: 440px) {
+                    flex-direction: column;
+                }
+
+                .pseudo {
+                    display: flex;
+
+                    span {
+                        transform: translate(6px, 4px);
+                        cursor: pointer;
+
+                        img {
+                            box-shadow: none;
+                            height: 15px;
+                            width: 15px;
+                        }
+                    }
+                }
+                span {
+                    font-size: 0.9rem;
+                    font-style: italic;
+                }
+            }
+        }
+        :last-child.comment-container.deleted{
+            display: none;
         }
     }
 }

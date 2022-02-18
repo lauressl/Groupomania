@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import '../styles/navbar.scss';
 import logo from '../images/icon-left-font-monochrome-white.png'
 import { useSelector } from 'react-redux';
 

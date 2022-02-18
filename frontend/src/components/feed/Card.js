@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import '../../styles/card.scss'
 import { dateParser, isEmpty } from '../utils';
 import commentLogo from '../../images/message1.svg';
 import editLogo from '../../images/edit.svg';
@@ -15,6 +14,7 @@ const Card = ({post}) => {
     const [isUpdated, setisUpdated] = useState(false);
     const [textUpdate, settextUpdate] = useState(null);
     const [showComments, setshowComments] = useState(false);
+    const [text, settext] = useState("")
 
     const dispatch = useDispatch();
 
@@ -55,9 +55,33 @@ const Card = ({post}) => {
     };
     useEffect(() => {
         getComments(post)
-    }, [post])
+    }, [post, text])
     
+    //******POST COMMENT****/
     
+    const handleComment = async (e) => {
+        e.preventDefault();
+
+        if(text){
+            try {
+                await axios.post(ipServ + '/api/feed/post/comment',{
+                    postId : post.id,
+                    content : text
+                },
+                {
+                    headers:{
+                        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+                    }
+                })
+                .then ((res) => {
+                    console.log(res);
+                    settext(res.data[0])
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        };
+    };
 
   return (
     <li className='card-container' key={post.id}>
@@ -134,10 +158,25 @@ const Card = ({post}) => {
                     />
                 </div>
                 {showComments &&
+                <>
                     <CardComments 
                         post={post}
                         postComment={postComment.rows}
                     />
+                    {userData.id && (
+                        <form className='comment-form' onSubmit={handleComment} action="">
+                            <input
+                                type="text"
+                                name="text"
+                                onChange={(e) => settext(e.target.value)}
+                                value={text}
+                                placeholder='laisser un commentaire'
+                            />
+                            <br/>
+                            <input type="submit" value="Envoyer"/>
+                        </form>
+                    )}
+                </>
                 }
             </>
         )}

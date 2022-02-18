@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState } from 'react';
-import '../../styles/home.scss';
 
 const Signup = () => {
     //Connect server
