@@ -83,6 +83,7 @@ const LikeButton = ({post}) => {
         for(let elem of likes) {
             console.log(elem.userId)
             if(elem.userId === parseInt(uid)) setliked(true);
+            else setliked(false);
         }
     }
     useEffect((likes) => {

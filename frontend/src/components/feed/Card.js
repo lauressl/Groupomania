@@ -8,11 +8,13 @@ import axios from 'axios';
 import LikeButton from './LikeButton';
 import { updatePost } from '../../action/post.actions';
 import DeleteCard from './DeleteCard';
+import CardComments from './CardComments';
 
 const Card = ({post}) => {
     const [isLoading, setisLoading] = useState(true);
     const [isUpdated, setisUpdated] = useState(false);
     const [textUpdate, settextUpdate] = useState(null);
+    const [showComments, setshowComments] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -33,7 +35,7 @@ const Card = ({post}) => {
     /****COUNTCOMMENTS****/
     const ipServ=process.env.REACT_APP_IP_SERVER;
 
-    const [numComment, setnumComment] = useState('');
+    const [postComment, setpostComment] = useState('');
 
     const getComments = async (post) => {
         try {
@@ -45,7 +47,7 @@ const Card = ({post}) => {
             })
             .then ((res) => {
                 console.log(res.data.comments);
-                setnumComment(res.data.comments)
+                setpostComment(res.data.comments);
             });
         } catch (error) {
             console.log(error);
@@ -119,14 +121,24 @@ const Card = ({post}) => {
                 }
                 <div className='card-footer'>
                     <div className='comment-icon'>
-                        <img src={commentLogo} alt="comment-pic"/>
-                        <span>{numComment.count}</span>
+                        <img 
+                            src={commentLogo} 
+                            onClick={() => setshowComments(!showComments)} 
+                            alt="comment-pic"
+                        />
+                        <span>{postComment.count}</span>
                     </div>
                     <LikeButton
                         post={post}
                         userId={userData.id}
                     />
                 </div>
+                {showComments &&
+                    <CardComments 
+                        post={post}
+                        postComment={postComment.rows}
+                    />
+                }
             </>
         )}
     </li>
