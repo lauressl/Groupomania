@@ -107,7 +107,7 @@ const Card = ({post}) => {
                             <img src={post.attachement} alt="card-pic" className='card-pic'/>
                         }
                 </div>
-                {userData.id === post.userId &&
+                {(userData.id === post.userId || userData.isAdmin === true) &&
                     <div className='btn-container'>
                         <div onClick={() => setisUpdated(!isUpdated)}>
                             <img src={editLogo} alt='edit-logo'/>
