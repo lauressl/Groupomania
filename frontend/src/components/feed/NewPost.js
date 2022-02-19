@@ -60,23 +60,25 @@ const NewPost = () => {
                     value={post}
                 />
                 {post || postPicture ? (
-                    <li className="card-container">
-                        <div className="card-left">
-                            <img src={userData.attachement} alt="user-pic" />
-                        </div>
-                        <div className="card-right">
-                            <div className="card-header">
-                                <div className="pseudo">
+                    <div className="card-container">
+                        <div className="card-header">
+                            <div className="user">
+                                <div className='user-picture'>
+                                    <img src={userData.attachement} alt="user-pic" />
+                                </div>
+                                <div className="user-name">
                                     <h3>{userData.username}</h3>
                                 </div>
-                                <span>{timestampParser(Date.now())}</span>
                             </div>
-                            <div className="content">
-                                <p>{post}</p>
-                                <img src={postPicturePreview} alt="" />
+                            <span>{timestampParser(Date.now())}</span>
+                        </div>
+                        <div className="card-content">
+                            <p>{post}</p>
+                            <div className='pic-container'>
+                                <img src={postPicturePreview} alt="" className='card-pic' />
                             </div>
                         </div>
-                    </li>
+                    </div>
                 ) : null}
             </div>
 

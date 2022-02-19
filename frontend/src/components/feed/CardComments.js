@@ -39,7 +39,7 @@ const CardComments = ({ post, postComment }) => {
 
 
     return (
-        <div className="comments-container">
+        <>
             {postComment.map((comment) => {
                 return (
                     <div
@@ -48,22 +48,23 @@ const CardComments = ({ post, postComment }) => {
                         }
                         key={comment.id}
                     >
-                        <div className="left-part">
-                            <img
-                                src={
-                                    !isEmpty(usersData[0]) &&
-                                    usersData
-                                        .map((user) => {
-                                            if (user.id === comment.userId) return user.attachement;
-                                        })
-                                        .join("")
-                                }
-                                alt="userpost-pic"
-                            />
-                        </div>
-                        <div className="right-part">
-                            <div className="comment-header">
-                                <div className="pseudo">
+
+                        <div className="comment-header">
+                            <div className="user">
+                                <div className="user-pic">
+                                    <img
+                                        src={
+                                            !isEmpty(usersData[0]) &&
+                                            usersData
+                                                .map((user) => {
+                                                    if (user.id === comment.userId) return user.attachement;
+                                                })
+                                                .join("")
+                                        }
+                                        alt="userpost-pic"
+                                    />
+                                </div>
+                                <div className="user-name">
                                     <p>
                                         {!isEmpty(usersData[0]) &&
                                             usersData
@@ -73,10 +74,11 @@ const CardComments = ({ post, postComment }) => {
                                                 .join("")}
                                     </p>
                                 </div>
-                                <span>{timestampParser(comment.createdAt)}</span>
                             </div>
-                            <p>{comment.content}</p>
+                            <span>{timestampParser(comment.createdAt)}</span>
                         </div>
+                        <p className="comment-content">{comment.content}</p>
+
                         {(userData.id === comment.userId || userData.isAdmin === true) && (
                             <div className="btn-container">
                                 <div
@@ -95,7 +97,7 @@ const CardComments = ({ post, postComment }) => {
                     </div>
                 );
             })}
-        </div>
+        </>
     );
 };
 

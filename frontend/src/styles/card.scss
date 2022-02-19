@@ -1,178 +1,173 @@
 .card-container {
-    display: grid;
-    grid-template-columns: 66px 1fr;
-    border: 2px solid black;
-    margin: 10px;
-    padding: 16px;
-    border-radius: 20px;
-    margin: 8px auto;
-    position: relative;
-    min-height: 100px;
-    .fa-spinner {
-        position: absolute;
-        top: 40%;
-        left: 49%;
-        font-size: 1.5rem;
-    }
-    .card-left {
-        img {
-            height: 52px;
-            width: 52px;
-            border-radius: 20px;
-            box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.192);
-            object-fit: cover;
-    
-            @media screen and(max-width: 590px) {
-                height: 40px;
-                width: 40px;
-                margin-left: 18px;
-                border-radius: 14px;
-            }
-        }
-        @media screen and(max-width: 590px) {
-          position: absolute;
-          transform: translate(17px, 18px);
-        }
-    }
-    .card-right {
-        @media screen and(max-width: 590px) {
-          margin-left: 18px;
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            margin: 2px 0 4px;
-            min-height: 35px;
-
-            @media screen and(max-width: 590px) {
-                margin: 12px 0 14px;
-            }
-            @media screen and(max-width: 440px) {
-                flex-direction: column;
-            }
-            .username {
-                display: flex;
-                align-content: flex-start;
-                @media screen and(max-width: 590px) {
-                margin-left: 52px;
-                }
-                @media screen and(max-width: 440px) {
-                transform: translateY(-18px);
-                }
-                p{
-                    font-size: 13px;
-                    font-weight: 500;
-                    margin: 0;
-                }
-            }
-            span {
-                font-style: italic;
-                font-size: 12px;
-                color: gray;
-        
-                @media screen and(max-width: 440px) {
-                  transform: translate(52px, -20px);
-                }
-            }
-        }
-        p {
-            margin: 3px 0 9px;
-            font-size: 1.1rem;
-            text-align: left;
-      
-            @media screen and(max-width: 440px) {
-              margin-top: -18px;
-            }
-        }
-        .card-pic {
-            width: fit-content;
-            border-radius: 6px;
-            margin-top: 12px;
-            box-shadow: 0 0 3px rgba(51, 51, 51, 0.342);
-        }
-    }
-    .card-footer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin: 10px;
+  padding: 16px;
+  border-radius: 20px;
+  margin: 8px auto;
+  width: 100%;
+  min-height: 100px;
+  .fa-spinner {
+    position: absolute;
+    top: 40%;
+    left: 49%;
+    font-size: 1.5rem;
+  }
+  .card-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 2px 0 4px;
+    min-height: 35px;
+    .user {
+      display: flex;
+      &-name {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        justify-content: space-between;
-        padding: 12px 0 4px;
-
+        align-content: flex-start;
+        p {
+          font-size: 15px;
+          font-weight: 500;
+          margin-left: 5px;
+        }
+      }
+      &-picture {
         img {
-            height: 22px;
-            width: 22px;
-            cursor: pointer;
-            transition: 0.2s;
-
-            &:hover {
-              transform: scale(1.2);
-            }
+          height: 52px;
+          width: 52px;
+          border-radius: 20px;
+          box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.192);
+          object-fit: cover;
         }
-        .comment-icon,
-        .like-container {
-            display: flex;
-            align-items: center;
-
-            span {
-                font-size: 1.02rem;
-                position: absolute;
-                transform: translate(29px, 2px);
-            }
-        }
+      }
     }
-    .comments-container{
-        display:flex;
-        flex-direction: column;
-        .comment-container {
-            display: grid;
-            grid-template-columns: 50px 1fr;
-            border: 1px solid black;
-            padding: 15px;
-            margin: 5px 0;
-            border-radius: 20px 20px 20px 6px;
+    span {
+      font-style: italic;
+      font-size: 12px;
+      color: gray;
+    }
+  }
+  .card-content {
+    width: 100%;
+    p {
+      margin: 3px 0 9px;
+      font-size: 1.1rem;
+      text-align: left;
+    }
+    .pic-container {
+      width: 100%;
+    }
+    .card-pic {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 12px;
+      box-shadow: 0 0 3px rgba(51, 51, 51, 0.342);
+    }
+    .btn-container {
+      display: flex;
+      align-items: flex-start;
+      img {
+        width: 25px;
+      }
+    }
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    padding: 12px 0 4px;
+    img {
+      height: 25px;
+      width: 25px;
+      cursor: pointer;
+      transition: 0.2s;
 
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    .comment-icon,
+    .like-container {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 1.02rem;
+        position: absolute;
+        transform: translate(29px, 2px);
+      }
+    }
+  }
+  .comments-container {
+    display: flex;
+    flex-flow: column;
+    .comment-form {
+      background-color: #fdeeee;
+      border-radius: 20px 20px 20px 6px;
+      padding: 5px;
+      input {
+        min-height: 30px;
+        max-width: 100%;
+        border-radius: 20px 20px 20px 6px;
+        &[type="submit"] {
+          height: 30px;
+          width: 90px;
+          font-size: 13px;
+          color: black;
+        }
+      }
+    }
+    .comment-container {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      padding: 15px;
+      margin: 5px 0;
+      border-radius: 20px 20px 20px 6px;
+      .comment-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 100%;
+        .user {
+          display: flex;
+          align-items: flex-start;
+          &-pic {
             img {
-                height: 40px;
-                width: 40px;
-                border-radius: 14px;
-                box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.192);
-                object-fit: cover;
-
-                @media screen and(max-width: 440px) {
-                height: 37px;
-                width: 37px;
-                }
+              height: 25px;
+              width: 25px;
+              border-radius: 10px;
+              box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.192);
+              object-fit: cover;
             }
-            .comment-header {
-                display: flex;
-                justify-content: space-between;
-
-                @media screen and(max-width: 440px) {
-                    flex-direction: column;
-                }
-
-                .pseudo {
-                    display: flex;
-
-                    span {
-                        transform: translate(6px, 4px);
-                        cursor: pointer;
-
-                        img {
-                            box-shadow: none;
-                            height: 15px;
-                            width: 15px;
-                        }
-                    }
-                }
-                span {
-                    font-size: 0.9rem;
-                    font-style: italic;
-                }
-            }
+          }
+          p {
+            margin-left: 5px;
+            font-size: 12px;
+          }
         }
-        :last-child.comment-container.deleted{
-            display: none;
+        span {
+          font-style: italic;
+          font-size: 12px;
+          color: gray;
+          max-width: 100%;
         }
+      }
+      .comment-content {
+        display: flex;
+        max-width: 100%;
+      }
+      .btn-container {
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
     }
+    :last-child.comment-container.deleted {
+      display: none;
+    }
+  }
 }

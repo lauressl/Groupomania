@@ -14,43 +14,42 @@ const Login = () => {
     //Login request
     const connectUser = async () => {
         try {
-            await axios.post(ipServ + '/api/home/login',{
-                email : userEmail,
-                password : userPassword
+            await axios.post(ipServ + '/api/home/login', {
+                email: userEmail,
+                password: userPassword
             })
-            .then ((res) => {
-                console.log(res)
-                if(res.status === 201) {
-                    window.localStorage.setItem("token", res.data.token);
-                    window.localStorage.setItem("uid", res.data.userId);
+                .then((res) => {
+                    console.log(res)
+                    if (res.status === 201) {
+                        window.localStorage.setItem("token", res.data.token);
+                        window.localStorage.setItem("uid", res.data.userId);
 
-                    alert ("Content de vous revoir");
-                    window.location.replace("/FeedHome");
-                }
-                else{
-                    console.log(res.error);
-                    setErrorMessage(JSON.stringify(res.data))
-                }
-            });
+                        alert("Content de vous revoir");
+                        window.location.replace("/FeedHome");
+                    }
+                    else {
+                        setErrorMessage("Email ou mot de passe incorrect")
+                    }
+                });
         } catch (error) {
-            console.log(error);
+            setErrorMessage("Email ou mot de passe incorrect");
         }
     };
-    return(
+    return (
         <div className='home-login'>
             <h2>Déjà membre ?</h2>
             <form>
                 <label>
                     Email :
-                    <input type="email" label="email" onChange={(e) => {setUserEmail(e.target.value)}}></input>
+                    <input type="email" label="email" onChange={(e) => { setUserEmail(e.target.value) }}></input>
                 </label>
                 <label>
                     Mot de passe :
-                    <input type="password" label="Mot de passe" onChange={(e) => {setUserPassword(e.target.value)}}></input>
+                    <input type="password" label="Mot de passe" onChange={(e) => { setUserPassword(e.target.value) }}></input>
                 </label>
             </form>
             <p>{errorMessage}</p>
-            <button onClick ={(e) => connectUser(e)}> Se connecter</button>
+            <button onClick={(e) => connectUser(e)}> Se connecter</button>
         </div>
     )
 };

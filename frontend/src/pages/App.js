@@ -2,7 +2,7 @@
 import '../styles/index.scss';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import  { useState, useEffect } from 'react' ;
+import { useState, useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 //COMPONENTS
@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { getUser } from '../action/user.actions';
 import { UidContext } from '../components/AppContext';
 import FeedHome from './FeedHome';
+import NavbarLinks from '../components/NavbarLinks';
 
 
 
@@ -27,28 +28,29 @@ function App() {
     if (uid)
       dispatch(getUser(uid))
   }, [uid]);
-  
+
 
   const getToken = window.localStorage.getItem("token")
-  
+
   return (
     <UidContext.Provider value={uid}>
       <BrowserRouter>
         <div className="App">
           <Navbar />
+          <NavbarLinks />
           <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/Home" element={<Home />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Home" element={<Home />} />
 
-                {(getToken) &&
+              {(getToken) &&
                 <>
-                    {/* <Route path="/Feed" element={<Feed />} /> */}
-                    <Route path="/FeedHome" element={<FeedHome />} />
-                    <Route path="/Profile" element={<Profile />} />
+                  {/* <Route path="/Feed" element={<Feed />} /> */}
+                  <Route path="/FeedHome" element={<FeedHome />} />
+                  <Route path="/Profile" element={<Profile />} />
                 </>
-                }
-              </Routes>
+              }
+            </Routes>
           </main>
         </div>
       </BrowserRouter>
