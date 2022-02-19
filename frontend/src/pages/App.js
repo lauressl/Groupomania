@@ -37,7 +37,6 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          <NavbarLinks />
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
