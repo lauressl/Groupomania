@@ -1,20 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { isEmpty, timestampParser } from "../utils";
 import deleteLogo from "../../images/trash.svg";
 
-const CardComments = ({ postComment }) => {
-    console.log(postComment);
+const CardComments = ({ post }) => {
     const ipServ = process.env.REACT_APP_IP_SERVER;
-
-    const dispatch = useDispatch();
 
     const usersData = useSelector((state) => state.usersReducer);
     const userData = useSelector((state) => state.userReducer);
 
     const [isDeleted, setisDeleted] = useState(false);
-    const [commentId, setCommentId] = useState('')
+    const [commentId, setCommentId] = useState(null);
+    const [postComment, setpostComment] = useState([]);
+
+    const postId = post.id;
     //*****DELETE COMMENT*****/
     const deleteComment = async (id) => {
         try {
@@ -37,9 +37,28 @@ const CardComments = ({ postComment }) => {
         }
     };
 
-    useEffect(() => {
-        deleteComment(commentId)
-    }, [commentId])
+
+    console.log(postComment)
+
+    const getComments = async (post) => {
+        try {
+            await axios.get(ipServ + `/api/feed/post/comment/${postId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+                    }
+                })
+                .then((res) => {
+                    console.log(res.data.comments);
+                    setpostComment(res.data.comments.rows);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect((post) => {
+        getComments(post)
+    }, [post, isDeleted])
 
 
     return (
@@ -88,9 +107,9 @@ const CardComments = ({ postComment }) => {
                                 <div
                                     onClick={(e) => {
                                         if (window.confirm("Voulez-vous supprimer ce commentaire ?")) {
+                                            let commentId = comment.id
                                             e.preventDefault();
-                                            setisDeleted(true)
-                                            setCommentId(comment.id)
+                                            deleteComment(commentId)
                                         }
                                     }}
                                 >

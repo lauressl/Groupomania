@@ -40,7 +40,7 @@ const Card = ({ post }) => {
     /****COUNTCOMMENTS****/
     const ipServ = process.env.REACT_APP_IP_SERVER;
 
-    const [postComment, setpostComment] = useState('');
+    const [commentCount, setcommentCount] = useState('');
 
     const getComments = async (post) => {
         try {
@@ -52,7 +52,7 @@ const Card = ({ post }) => {
                 })
                 .then((res) => {
                     console.log(res.data.comments);
-                    setpostComment(res.data.comments);
+                    setcommentCount(res.data.comments.count);
                 });
         } catch (error) {
             console.log(error);
@@ -60,7 +60,7 @@ const Card = ({ post }) => {
     };
     useEffect(() => {
         getComments(post)
-    }, [post, text])
+    }, [post, text, showComments])
 
     //******POST COMMENT****/
 
@@ -80,7 +80,7 @@ const Card = ({ post }) => {
                     })
                     .then((res) => {
                         console.log(res);
-                        settext(res.data[0])
+                        settext('')
                     });
             } catch (error) {
                 console.log(error);
@@ -170,7 +170,7 @@ const Card = ({ post }) => {
                                 onClick={() => setshowComments(!showComments)}
                                 alt="comment-pic"
                             />
-                            <span>{postComment.count}</span>
+                            <span>{commentCount}</span>
                         </div>
                         <LikeButton
                             post={post}
@@ -182,7 +182,6 @@ const Card = ({ post }) => {
                             <div className="comments-container">
                                 <CardComments
                                     post={post}
-                                    postComment={postComment.rows}
                                 />
                                 {userData.id && (
                                     <form className='comment-form' onSubmit={handleComment} action="">
