@@ -125,6 +125,16 @@ const Card = ({ post }) => {
                                     onChange={(e) => settextUpdate(e.target.value)}
                                 />
                                 <div>
+                                    <div className="icon">
+                                        <img src={logoPicture} alt="img" />
+                                        <input
+                                            type="file"
+                                            id="file-upload"
+                                            name="file"
+                                            accept="jpg jpeg png"
+                                            onChange={(e) => handlePicture(e)}
+                                        />
+                                    </div>
                                     <button onClick={updateItem}>
                                         Valider modification
                                     </button>
