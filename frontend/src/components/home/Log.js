@@ -8,7 +8,7 @@ const Log = () => {
     const [loginModal, setloginModal] = useState(false);
 
     const handleModals = (e) => {
-        if (e.target.id === "register"){
+        if (e.target.id === "register") {
             setsignupModal(true)
             setloginModal(false)
         } else if (e.target.id === "login") {
@@ -20,12 +20,12 @@ const Log = () => {
     return (
         <div className='connection-form'>
             <div className='form-container'>
-                <ul>
-                    <li onClick={handleModals} id="register" className={signupModal ? "active-btn" : null}>S'inscrire</li>
-                    <li onClick={handleModals} id="login" className={loginModal ? "active-btn" : null}>Se connecter</li>
-                </ul>
-                {signupModal && <Signup/>}
-                {loginModal && <Login/>}
+                <div className='form-container-header'>
+                    <button onClick={handleModals} id="register" className={signupModal ? "active-btn" : null}>S'inscrire</button>
+                    <button onClick={handleModals} id="login" className={loginModal ? "active-btn" : null}>Se connecter</button>
+                </div>
+                {signupModal && <Signup />}
+                {loginModal && <Login />}
             </div>
         </div>
     )

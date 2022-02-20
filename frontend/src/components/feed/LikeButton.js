@@ -21,7 +21,6 @@ const LikeButton = ({ post }) => {
                     }
                 })
                 .then((res) => {
-                    console.log(res.data.likes.rows);
                     setLikes(res.data.likes.rows);
                     setcountLike(res.data.likes.count);
                 });
@@ -47,7 +46,6 @@ const LikeButton = ({ post }) => {
                     }
                 })
                 .then((res) => {
-                    console.log(res.data);
                     setliked(true);
                 });
         } catch (error) {
@@ -70,7 +68,6 @@ const LikeButton = ({ post }) => {
                     }
                 })
                 .then((res) => {
-                    console.log(res.data);
                     setliked(false);
                 });
         } catch (error) {
@@ -81,7 +78,6 @@ const LikeButton = ({ post }) => {
     /****SET LIKES*****/
     const checkLikes = () => {
         for (let elem of likes) {
-            console.log(elem.userId)
             if (elem.userId === parseInt(uid)) setliked(true);
             else setliked(false);
         }
@@ -89,8 +85,6 @@ const LikeButton = ({ post }) => {
     useEffect((likes) => {
         checkLikes(likes)
     }, [uid, liked, likes, countLike, post])
-
-    console.log(liked)
 
     return (
         <div className='like-container'>

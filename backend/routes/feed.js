@@ -20,7 +20,7 @@ router.put('/post/:id', auth, postCtrl.updatePost);
 //Comment
 router.post('/post/comment', auth, commentCtrl.commentPost);
 router.get('/post/comment/:postId', auth, commentCtrl.getAllComments);
-router.delete('/post/comment/:postId', auth, commentCtrl.deleteComment);
+router.delete('/post/comment/:id', auth, commentCtrl.deleteComment);
 
 
 //Likes

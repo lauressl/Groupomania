@@ -1,31 +1,47 @@
 
 import { useState, useEffect, Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deletedUser } from '../action/user.actions';
 import UpdateProfile from '../components/profile/UpdateProfile';
+import deleteLogo from '../images/trash.svg';
 
-function Profile () {
-    
+
+function Profile() {
+
     //Dispatch user infos
     const userData = useSelector((state) => state.userReducer);
 
-    return(
+    const [isdeleted, setisdeleted] = useState(false);
+    const dispatch = useDispatch();
+
+    const deleteUser = (userId) => {
+        dispatch(deletedUser(userId))
+        setisdeleted(true)
+        window.localStorage.removeItem("token")
+    }
+
+    return (
         <div className='profile'>
-            <UpdateProfile/>
-            {/* <h1 className='profile-title'>Profil</h1>
-                <div className='profile-container'>
-                    <img src={logo} className="profile-logo" alt="logo" />
-                    <div className='profile-subtitle'>
-                        <h2>Nom d'utilisateur :</h2>
-                        <p>{userData.username}</p>
+            {isdeleted &&
+                <p>Profil supprimé</p>
+            }
+            {!isdeleted &&
+                <>
+                    <UpdateProfile />
+                    <div className='btn-container' onClick={() => {
+                        if (window.confirm("Voulez-vous supprimer le profil ?")) {
+                            deleteUser();
+                        }
+                    }}
+                    >
+                        <img src={deleteLogo} alt='delete-logo' />
                     </div>
-                    <div className='profile-subtitle'>
-                        <h2>Email:</h2>
-                        <p>{userData.email}</p>
-                    </div>
-                    <button className='profile-btn-disconnect' onClick={(e) => {window.localStorage.clear(e); window.location.replace("/home");}}>Deconnexion</button>
-                </div> */}
-        </div> 
+                </>
+            }
+
+
+        </div>
     )
-}
+};
 
 export default Profile;

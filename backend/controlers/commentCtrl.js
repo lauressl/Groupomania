@@ -1,8 +1,8 @@
 const models = require('../models');
 
 module.exports = {
-    commentPost: async function(req, res){
-        try{
+    commentPost: async function (req, res) {
+        try {
             console.log("comment post")
             const content = req.body.content;
             const user = req.userAuth.id;
@@ -13,48 +13,47 @@ module.exports = {
                 userId: user,
                 postId: post
             })
-            return res.status(200).json({'message': "comment posts "})
+            return res.status(200).json({ 'message': "comment posts " })
         }
-        catch(err){
-            return res.status(500).json({'error': `${err}`})
+        catch (err) {
+            return res.status(500).json({ 'error': `${err}` })
         }
     },
-    getAllComments: async function(req, res){
-        try{
+    getAllComments: async function (req, res) {
+        try {
             console.log("getComments");
             console.log("req", req.params)
             const comments = await models.comment.findAndCountAll({
-                where: {postId: req.params.postId}
+                where: { postId: req.params.postId }
             });
             console.log("All comments:", JSON.stringify(comments));
-            return res.status(200).json({'comments': comments})
+            return res.status(200).json({ 'comments': comments })
         }
-        catch(err){
-            return res.status(500).json({'error': `${err}`})
+        catch (err) {
+            return res.status(500).json({ 'error': `${err}` })
         }
     },
 
-    deleteComment: async function(req,res){
+    deleteComment: async function (req, res) {
         //params
         //get id from auth middleware and attached it to the request
         const userId = req.userAuth.id;
         const admin = req.userAuth.admin;
-        const postId = req.params.postId;
+        const id = req.body.id;
 
         console.log("del comment")
-        if(userId || admin) {
+        if (userId || admin) {
             try {
                 await models.comment.destroy({
                     where: {
-                        userId: userId,
-                        postId: postId
+                        id: id
                     }
                 })
-                res.status(201).json({'comment': 'comment deleted'});
-            
+                res.status(201).json({ 'comment': 'comment deleted' });
+
             }
-            catch(err){
-                res.status(500).json({ 'error': `${err}`});
+            catch (err) {
+                res.status(500).json({ 'error': `${err}` });
 
             };
         }

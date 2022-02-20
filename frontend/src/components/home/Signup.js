@@ -23,7 +23,7 @@ const Signup = () => {
                     console.log(res)
                     if (res.status === 201) {
                         alert("Bienvenue sur le forum");
-                        window.location.replace("/feed");
+                        window.location.replace("/home");
                     }
                     else {
                         setErrorMessage(JSON.stringify(res.data))
@@ -36,7 +36,6 @@ const Signup = () => {
     };
     return (
         <div className='home-signup'>
-            <h2>Nouveau ici ?</h2>
             <form>
                 <label>
                     Nom d'utilisateur :

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmpty, timestampParser } from "../utils";
-import logoPicture from "../../images/picture.svg"
+import logoPicture from "../../images/picture.svg";
 import { addPosts, getPosts } from "../../action/post.actions";
 
 const NewPost = () => {
@@ -41,6 +41,7 @@ const NewPost = () => {
     const cancelPost = () => {
         setpost('');
         setpostPicture(null);
+        setpostPicturePreview(null);
         setfile();
     };
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dateParser, isEmpty } from '../utils';
 import commentLogo from '../../images/message1.svg';
 import editLogo from '../../images/edit.svg';
+import logoPicture from "../../images/picture.svg";
 import axios from 'axios';
 import LikeButton from './LikeButton';
 import { updatePost } from '../../action/post.actions';
@@ -13,6 +14,7 @@ const Card = ({ post }) => {
     const [isLoading, setisLoading] = useState(true);
     const [isUpdated, setisUpdated] = useState(false);
     const [textUpdate, settextUpdate] = useState(null);
+    const [postPicture, setpostPicture] = useState(null);
     const [showComments, setshowComments] = useState(false);
     const [text, settext] = useState("")
 
@@ -28,6 +30,9 @@ const Card = ({ post }) => {
         setisUpdated(false);
     }
 
+    const handlePicture = (e) => {
+        setpostPicture(e.target.files[0]);
+    };
     useEffect(() => {
         !isEmpty(usersData[0]) && setisLoading(false);
     }, [usersData])

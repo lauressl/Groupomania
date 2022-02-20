@@ -37,7 +37,6 @@ const Login = () => {
     };
     return (
         <div className='home-login'>
-            <h2>Déjà membre ?</h2>
             <form>
                 <label>
                     Email :

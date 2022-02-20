@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isEmpty, timestampParser } from "../utils";
 import deleteLogo from "../../images/trash.svg";
 
-const CardComments = ({ post, postComment }) => {
+const CardComments = ({ postComment }) => {
     console.log(postComment);
     const ipServ = process.env.REACT_APP_IP_SERVER;
 
@@ -14,14 +14,14 @@ const CardComments = ({ post, postComment }) => {
     const userData = useSelector((state) => state.userReducer);
 
     const [isDeleted, setisDeleted] = useState(false);
+    const [commentId, setCommentId] = useState('')
     //*****DELETE COMMENT*****/
-    const deleteComment = async () => {
-        let postId = post.id;
+    const deleteComment = async (id) => {
         try {
             await axios
-                .delete(ipServ + `/api/feed/post/comment/${postId}`, {
+                .delete(ipServ + `/api/feed/post/comment/${id}`, {
                     data: {
-                        postId: postId,
+                        id: id,
                     },
 
                     headers: {
@@ -36,6 +36,10 @@ const CardComments = ({ post, postComment }) => {
             console.log(error);
         }
     };
+
+    useEffect(() => {
+        deleteComment(commentId)
+    }, [commentId])
 
 
     return (
@@ -85,8 +89,8 @@ const CardComments = ({ post, postComment }) => {
                                     onClick={(e) => {
                                         if (window.confirm("Voulez-vous supprimer ce commentaire ?")) {
                                             e.preventDefault();
-                                            deleteComment(e)
                                             setisDeleted(true)
+                                            setCommentId(comment.id)
                                         }
                                     }}
                                 >
