@@ -113,13 +113,16 @@
     display: flex;
     flex-flow: column;
     .comment-form {
+      justify-items: space-around;
       background-color: #fdeeee;
       border-radius: 20px 20px 20px 6px;
       padding: 5px;
+      height: 90px;
       input {
         min-height: 30px;
-        max-width: 100%;
+        width: 70%;
         border-radius: 20px 20px 20px 6px;
+        margin: 5px 2px;
         &[type="submit"] {
           height: 30px;
           width: 90px;
