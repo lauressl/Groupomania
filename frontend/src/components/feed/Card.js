@@ -51,7 +51,6 @@ const Card = ({ post }) => {
                     }
                 })
                 .then((res) => {
-                    console.log(res.data.comments);
                     setcommentCount(res.data.comments.count);
                 });
         } catch (error) {
@@ -79,7 +78,6 @@ const Card = ({ post }) => {
                         }
                     })
                     .then((res) => {
-                        console.log(res);
                         settext('')
                     });
             } catch (error) {
@@ -180,9 +178,10 @@ const Card = ({ post }) => {
                     {showComments &&
                         <>
                             <div className="comments-container">
-                                <CardComments
+                                {showComments && <CardComments
                                     post={post}
-                                />
+                                />}
+
                                 {userData.id && (
                                     <form className='comment-form' onSubmit={handleComment} action="">
                                         <input

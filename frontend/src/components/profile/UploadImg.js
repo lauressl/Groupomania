@@ -10,7 +10,7 @@ const UploadImg = ({ email, username }) => {
     const userData = useSelector((state) => state.userReducer);
 
     const handlePicture = (e) => {
-        e.preventDefault();
+
         const data = new FormData();
         data.append('email', email);
         data.append('username', username);

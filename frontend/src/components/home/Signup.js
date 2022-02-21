@@ -20,7 +20,6 @@ const Signup = () => {
                 password: userPassword
             })
                 .then((res) => {
-                    console.log(res)
                     if (res.status === 201) {
                         alert("Bienvenue sur le forum");
                         window.location.replace("/home");
@@ -39,7 +38,7 @@ const Signup = () => {
             <form>
                 <label>
                     Nom d'utilisateur :
-                    <input type="text" label="Nom d'utilisateur" onChange={(e) => { setUserName(e.target.value); console.log(userName) }}></input>
+                    <input type="text" label="Nom d'utilisateur" onChange={(e) => { setUserName(e.target.value) }}></input>
                 </label>
                 <label>
                     Email :

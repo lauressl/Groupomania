@@ -29,7 +29,6 @@ const CardComments = ({ post }) => {
                     },
                 })
                 .then((res) => {
-                    console.log(res.data);
                     setisDeleted(true);
                 });
         } catch (error) {
@@ -49,7 +48,6 @@ const CardComments = ({ post }) => {
                     }
                 })
                 .then((res) => {
-                    console.log(res.data.comments);
                     setpostComment(res.data.comments.rows);
                 });
         } catch (error) {

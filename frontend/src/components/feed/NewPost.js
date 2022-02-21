@@ -21,7 +21,6 @@ const NewPost = () => {
         setpostPicturePreview(URL.createObjectURL(e.target.files[0]));
     };
 
-    console.log(postPicture)
     const handlePost = async () => {
         if (post || postPicture) {
             const data = new FormData();
