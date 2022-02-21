@@ -8,15 +8,15 @@ const secretToken = process.env.JWT_SIGN_SECRET;
 //Exported functions
 
 module.exports = {
-    generateUserToken: function(userData){
+    generateUserToken: function (userData) {
         return jwt.sign({
             userId: userData.id,
             isAdmin: userData.isAdmin,
             userName: userData.username
         },
-        secretToken,
-        {
-            expiresIn: '2h'
-        })
+            secretToken,
+            {
+                expiresIn: '6h'
+            })
     }
 }

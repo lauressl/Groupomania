@@ -76,15 +76,16 @@ const LikeButton = ({ post }) => {
     };
 
     /****SET LIKES*****/
-    const checkLikes = () => {
+    const checkLikes = (likes) => {
         for (let elem of likes) {
             if (elem.userId === parseInt(uid)) setliked(true);
             else setliked(false);
         }
     }
-    useEffect((likes) => {
+
+    useEffect(() => {
         checkLikes(likes)
-    }, [uid, liked, likes, countLike, post])
+    }, [uid, countLike, post])
 
     return (
         <div className='like-container'>

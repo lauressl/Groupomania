@@ -17,35 +17,31 @@ const Card = ({ post }) => {
     const [postPicture, setpostPicture] = useState(null);
     const [showComments, setshowComments] = useState(false);
     const [text, settext] = useState("")
-    const [file, setfile] = useState("")
 
     const dispatch = useDispatch();
 
     const usersData = useSelector((state) => state.usersReducer);
     const userData = useSelector((state) => state.userReducer);
-    const postData = useSelector((state) => state.postReducer);
 
-
-    /* const updateItem = () => {
+    const updateItem = () => {
         if (textUpdate) {
             dispatch(updatePost(post.id, textUpdate))
         }
         setisUpdated(false);
     }
-     */
-    const updateItem = async () => {
+    /* const updateItem = async () => {
         if (textUpdate || postPicture) {
             const data = new FormData();
             data.append('content', textUpdate);
             if (file) data.append("file", file);
             data.append('attachement', postPicture);
-            data.append('postId', post.id);
+            data.append('postId', post.id)
 
             await dispatch(updatePost(post.id, data));
             dispatch(getPosts());
             setisUpdated(false);
         }
-    };
+    }; */
     const handlePicture = (e) => {
         console.log("e.target.files[0]", e.target.files[0])
         setpostPicture(e.target.files[0]);

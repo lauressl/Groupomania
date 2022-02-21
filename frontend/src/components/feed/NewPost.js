@@ -66,6 +66,7 @@ const NewPost = () => {
                                 <div className='user-picture'>
                                     <img src={userData.attachement} alt="user-pic" />
                                 </div>
+
                                 <div className="user-name">
                                     <h3>{userData.username}</h3>
                                 </div>
