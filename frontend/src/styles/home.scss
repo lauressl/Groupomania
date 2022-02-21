@@ -70,16 +70,18 @@
       width: 80%;
       padding: 10px;
       margin: auto;
-    }
-    label {
-      margin-bottom: 10px;
-      text-align: left;
-      input {
-        width: 90%;
-        align-self: center;
-        margin-top: 5px;
-        &:active {
-          outline: none;
+      label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        text-align: center;
+        input {
+          width: 80%;
+          align-self: center;
+          margin-top: 5px;
+          &:active {
+            outline: none;
+          }
         }
       }
     }
@@ -94,7 +96,7 @@
     }
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .home-container {
     .connection-form {
       width: 95%;

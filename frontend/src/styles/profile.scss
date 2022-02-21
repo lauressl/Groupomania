@@ -1,5 +1,5 @@
 .profile {
-  width: 65%;
+  width: 40%;
   display: flex;
   margin: auto;
   flex-direction: column;
@@ -8,40 +8,42 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 60%;
+    width: 100%;
     height: 100%;
-    margin: 15px;
+    margin: 30px 15px;
     padding: 15px;
-    background-color: #ffd0c4;
+    background-color: #fdeeee;
     border-radius: 20px;
     h1 {
       text-align: center;
       margin: 10px 0;
+      font-size: 25px;
       width: 100%;
     }
     .update-container {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      flex-direction: column;
       flex-wrap: wrap;
       width: 100%;
       height: 100%;
       margin: 10px 0;
-      background-color: #ffd0c4;
+      background-color: #fdeeee;
       border-radius: 20px;
       .left-part {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        background-color: white;
         border-radius: 20px;
         margin: 10px 0;
         width: 100%;
         h3 {
-          font-size: 12px;
+          font-size: 15px;
+          margin: 10px;
         }
         img {
-          width: 100px;
+          width: 150px;
           border-radius: 15px;
         }
         .upload-pic {
@@ -51,10 +53,11 @@
           margin: 15px;
           width: 100%;
           label {
-            width: 50%;
+            width: 35%;
             height: 30px;
-            background: rgb(0, 22, 44);
-            color: #ffd0c4;
+            text-align: center;
+            background: rgb(212, 212, 212);
+            color: black;
             border-radius: 20px;
             padding: 3px 5px;
             transition: 0.2s;
@@ -66,10 +69,10 @@
             display: none;
           }
           input[type="submit"] {
-            margin-top: 10px;
             padding: 5px;
             border-radius: 20px;
-            width: 50%;
+            font-size: 15px;
+            width: 35%;
 
             &:hover {
               letter-spacing: 1px;
@@ -79,9 +82,15 @@
       }
       .right-part {
         display: flex;
+        width: 100%;
         flex-direction: column;
-        align-items: center;
         margin: 10px 0;
+        h3 {
+          font-size: 15px;
+        }
+        p {
+          margin: 10px;
+        }
       }
     }
   }

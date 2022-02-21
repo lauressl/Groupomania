@@ -29,10 +29,9 @@ const UpdateProfile = () => {
                 <div className='right-part'>
                     <h3>Infos du profil</h3>
                     <div className='email-update'>
-                        <p>email: {userData.email}</p>
+                        <p><b>Email:</b> {userData.email}</p>
+                        <p><b>Membre depuis le :</b> {dateParser(userData.createdAt)}</p>
                     </div>
-                    <h3>Membre depuis le :</h3>
-                    {dateParser(userData.createdAt)}
                 </div>
             </div>
         </div>

@@ -143,18 +143,8 @@ const Card = ({ post }) => {
                                     onChange={(e) => settextUpdate(e.target.value)}
                                 />
                                 <div>
-                                    <div className="icon">
-                                        <img src={logoPicture} alt="img" />
-                                        <input
-                                            type="file"
-                                            id="file-upload"
-                                            name="file"
-                                            accept="jpg jpeg png"
-                                            onChange={(e) => handlePicture(e)}
-                                        />
-                                    </div>
                                     <button onClick={updateItem}>
-                                        Valider modification
+                                        Modifier le texte
                                     </button>
                                 </div>
                             </div>
@@ -162,17 +152,6 @@ const Card = ({ post }) => {
                         {post.attachement &&
                             <div className='pic-container'>
                                 <img src={post.attachement} alt="card-pic" className='card-pic' />
-                            </div>
-                        }
-
-                        {(userData.id === post.userId || userData.isAdmin === true) &&
-                            <div className='btn-container'>
-                                <div onClick={() => setisUpdated(!isUpdated)}>
-                                    <img src={editLogo} alt='edit-logo' />
-                                </div>
-                                <DeleteCard
-                                    id={post.id}
-                                />
                             </div>
                         }
                     </div>
@@ -185,6 +164,16 @@ const Card = ({ post }) => {
                             />
                             <span>{commentCount}</span>
                         </div>
+                        {(userData.id === post.userId || userData.isAdmin === true) &&
+                            <div className='btn-container'>
+                                <div onClick={() => setisUpdated(!isUpdated)}>
+                                    <img src={editLogo} alt='edit-logo' />
+                                </div>
+                                <DeleteCard
+                                    id={post.id}
+                                />
+                            </div>
+                        }
                         <LikeButton
                             post={post}
                             userId={userData.id}
