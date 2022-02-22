@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "",
-    "password": "",
-    "database": "",
-    "host": "",
-    "dialect": "",
-    "port":
+    "username": "UserBDD",
+    "password": "Us3r8dd@2345++",
+    "database": "mydb",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port":3306
   }
 }
