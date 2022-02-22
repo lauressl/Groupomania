@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import validator from 'validator';
 
 const Signup = () => {
     //Connect server
@@ -25,12 +26,26 @@ const Signup = () => {
                     window.location.replace("/home");
                 }
                 else {
-                    console.log(res.data.message)
                     setErrorMessage(JSON.stringify(res.data.message))
                 }
             })
-            .catch((res) => {
-                console.log(res)
+            .catch((err) => {
+                console.log(err)
+                let validateMail = validator.isEmail(userEmail)
+                let validatePwd = validator.isStrongPassword(userPassword)
+                if (userName && validatePwd && !validateMail) {
+                    setErrorMessage("Veuillez entrer une adresse email correcte")
+                }
+                else if (userName && validateMail && !validatePwd) {
+                    setErrorMessage("Le mot de passe doit contenir au minimum 8 caractères dont 1 majuscule, 1 minuscule, 1 caractère spécial et 1 chiffre")
+                }
+                else if (userName && !validateMail && !validatePwd) {
+                    setErrorMessage("Email et mot de passe incorrects")
+                }
+                else if (!validateMail && !validatePwd && !userName) {
+                    setErrorMessage("Veuillez remplir tous les champs")
+                }
+
             })
     };
     return (

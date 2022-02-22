@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import validator from 'validator';
 
 
 const Login = () => {
@@ -13,26 +14,34 @@ const Login = () => {
 
     //Login request
     const connectUser = async () => {
-        try {
-            await axios.post(ipServ + '/api/home/login', {
-                email: userEmail,
-                password: userPassword
-            })
-                .then((res) => {
-                    if (res.status === 201) {
-                        window.localStorage.setItem("token", res.data.token);
-                        window.localStorage.setItem("uid", res.data.userId);
+        await axios.post(ipServ + '/api/home/login', {
+            email: userEmail,
+            password: userPassword
+        })
+            .then((res) => {
+                if (res.status === 201) {
+                    window.localStorage.setItem("token", res.data.token);
+                    window.localStorage.setItem("uid", res.data.userId);
 
-                        alert("Content de vous revoir");
-                        window.location.replace("/FeedHome");
-                    }
-                    else {
-                        setErrorMessage("Email ou mot de passe incorrect")
-                    }
-                });
-        } catch (error) {
-            setErrorMessage("Email ou mot de passe incorrect");
-        }
+                    alert("Content de vous revoir");
+                    window.location.replace("/FeedHome");
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                let validateMail = validator.isEmail(userEmail)
+                let validatePwd = validator.isStrongPassword(userPassword)
+                if (validatePwd && !validateMail) {
+                    setErrorMessage("Veuillez entrer une adresse email correcte")
+                }
+                else if (validateMail && !validatePwd) {
+                    setErrorMessage("Le mot de passe est incorrect")
+                }
+                else if (!validateMail && !validatePwd) {
+                    setErrorMessage("Email et mot de passe incorrects")
+                }
+            })
+            ;
     };
     return (
         <div className='home-login'>

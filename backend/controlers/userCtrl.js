@@ -36,7 +36,7 @@ module.exports = {
                     if ((!userFound) && (validateMail === true) && (validatePwd === true)) {
                         //encrypted password
                         bcrypt.hash(password, 5, function (err, bcryptedPwd) {
-                            let attachement = 'http://localhost:3001/images/logo-user.png';
+                            let attachement
                             if (req.file) {
                                 attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
                             }
