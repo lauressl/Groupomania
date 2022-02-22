@@ -26,12 +26,13 @@ const Login = () => {
                     alert("Content de vous revoir");
                     window.location.replace("/FeedHome");
                 }
+
             })
             .catch((err) => {
                 console.log(err)
                 let validateMail = validator.isEmail(userEmail)
                 let validatePwd = validator.isStrongPassword(userPassword)
-                if (validatePwd && !validateMail) {
+                if (!validateMail && validatePwd) {
                     setErrorMessage("Veuillez entrer une adresse email correcte")
                 }
                 else if (validateMail && !validatePwd) {
