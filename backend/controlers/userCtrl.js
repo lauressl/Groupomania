@@ -19,14 +19,14 @@ module.exports = {
         let validatePwd = validator.isStrongPassword(req.body.password)
 
         if (validateMail == false) {
-            res.status(401).json({ message: 'mail invalide' });
+            return res.status(401).json({ message: 'mail invalide' });
         }
         if (validatePwd == false) {
-            res.status(401).json("Veuillez entrer un mot de passe valide");
+            return res.status(401).json({ message: 'Veuillez entrer un mot de passe valide' });
         }
         //check if user exist
         if (!username) {
-            res.status(401).json("Tous les champs sont requis");
+            return res.status(401).json({ message: "Tous les champs sont requis" });
         } else
             models.user.findOne({
                 attributes: ['email'],

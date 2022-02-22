@@ -13,25 +13,25 @@ const Signup = () => {
 
     //Signup request
     const registerUser = async () => {
-        try {
-            await axios.post(ipServ + '/api/home/signup', {
-                username: userName,
-                email: userEmail,
-                password: userPassword
+        await axios.post(ipServ + '/api/home/signup', {
+            username: userName,
+            email: userEmail,
+            password: userPassword
+        })
+            .then((res) => {
+                console.log(res.data.message)
+                if (res.status === 201) {
+                    alert("Bienvenue sur le forum");
+                    window.location.replace("/home");
+                }
+                else {
+                    console.log(res.data.message)
+                    setErrorMessage(JSON.stringify(res.data.message))
+                }
             })
-                .then((res) => {
-                    if (res.status === 201) {
-                        alert("Bienvenue sur le forum");
-                        window.location.replace("/home");
-                    }
-                    else {
-                        setErrorMessage(JSON.stringify(res.data))
-                    }
-                });
-        } catch (error) {
-            console.log(error)
-            setErrorMessage("Veuillez remplir tous les champs")
-        }
+            .catch((res) => {
+                console.log(res)
+            })
     };
     return (
         <div className='home-signup'>

@@ -8,22 +8,17 @@ module.exports = {
     publishPost: async function (req, res) {
         //params
         try {
-            const title = req.body.title;
             const content = req.body.content;
             const userId = req.userAuth.id;
-            const userName = req.userAuth.userName;
 
-            console.log(userName);
             let attachement;
             if (req.file) {
                 attachement = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
             }
 
             await models.post.create({
-                title: title,
                 content: content,
                 userId: userId,
-                username: userName,
                 attachement: attachement
             })
             return res.status(200).json({ 'message': "message envoyé" })
@@ -81,7 +76,6 @@ module.exports = {
         const admin = req.userAuth.admin;
         const postId = req.body.postId;
 
-        console.log("del post")
         if (userId || admin) {
             try {
                 await models.post.destroy({

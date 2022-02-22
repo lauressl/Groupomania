@@ -19,7 +19,6 @@ const Login = () => {
                 password: userPassword
             })
                 .then((res) => {
-                    console.log(res)
                     if (res.status === 201) {
                         window.localStorage.setItem("token", res.data.token);
                         window.localStorage.setItem("uid", res.data.userId);

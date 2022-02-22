@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import logoNews from '../images/news.svg';
 
-import { useSelector } from 'react-redux';
-
 function NavbarLinks() {
     const getToken = window.localStorage.getItem("token");
 

@@ -11,7 +11,6 @@ const NewPost = () => {
     const [postPicturePreview, setpostPicturePreview] = useState(null);
 
     const [file, setfile] = useState();
-    const [title, settitle] = useState("titre")
     const userData = useSelector((state) => state.userReducer);
 
     const dispatch = useDispatch();
@@ -22,10 +21,9 @@ const NewPost = () => {
     };
 
     const handlePost = async () => {
-        if (post || postPicture) {
+        if ((post.trim()) || postPicture) {
             const data = new FormData();
             data.append('content', post);
-            data.append('title', title);
             if (file) data.append("file", file);
             data.append('attachement', postPicture);
 

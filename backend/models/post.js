@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.post.belongsTo(models.user, {onDelete: 'CASCADE'})
+      models.post.belongsTo(models.user, { onDelete: 'CASCADE' })
 
     }
   };
@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     content: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,14 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references:{
-        model:'user',
-        key:'id'
+      references: {
+        model: 'user',
+        key: 'id'
       }
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: true
     },
     attachement: {
       type: DataTypes.STRING,
