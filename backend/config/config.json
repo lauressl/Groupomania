@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "UserBDD",
-    "password": "Us3r8dd@2345++",
-    "database": "groupomania",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port":3306
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "",
+    "port":
   }
 }
