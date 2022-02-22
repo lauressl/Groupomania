@@ -45,7 +45,6 @@ Configurer le fichier .env
 Aller dans le dossier frontend : `cd frontend`
 - Installer les dépendances : npm install
 - Configurer le fichier .env
-   - Créer un fichier ".env" : touch .env
    - Compléter le fichier .env :
   ```
   REACT_APP_IP_SERVER=ip du serveur
