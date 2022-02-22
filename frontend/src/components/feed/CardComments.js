@@ -11,7 +11,6 @@ const CardComments = ({ post }) => {
     const userData = useSelector((state) => state.userReducer);
 
     const [isDeleted, setisDeleted] = useState(false);
-    const [commentId, setCommentId] = useState(null);
     const [postComment, setpostComment] = useState([]);
 
     const postId = post.id;

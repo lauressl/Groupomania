@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { isEmpty, timestampParser } from "../utils";
+import { timestampParser } from "../utils";
 import logoPicture from "../../images/picture.svg";
 import { addPosts, getPosts } from "../../action/post.actions";
 
 const NewPost = () => {
-    const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState("");
     const [postPicture, setpostPicture] = useState(null);
     const [postPicturePreview, setpostPicturePreview] = useState(null);
@@ -41,11 +40,6 @@ const NewPost = () => {
         setpostPicturePreview(null);
         setfile();
     };
-
-
-    useEffect(() => {
-        if (isEmpty(userData)) setisLoading(false);
-    }, [userData]);
 
     return (
         <div className="post-container">

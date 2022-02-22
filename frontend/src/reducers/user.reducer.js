@@ -1,4 +1,3 @@
-import { DELETE_POSTS } from "../action/post.actions";
 import { DELETE_USER, GET_USER, UPLOAD_PICTURE } from "../action/user.actions";
 
 const initialState = {};

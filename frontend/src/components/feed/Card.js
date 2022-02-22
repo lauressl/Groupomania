@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dateParser, isEmpty } from '../utils';
 import commentLogo from '../../images/message1.svg';
 import editLogo from '../../images/edit.svg';
-import logoPicture from "../../images/picture.svg";
 import axios from 'axios';
 import LikeButton from './LikeButton';
 import { updatePost, getPosts } from '../../action/post.actions';
@@ -14,7 +13,6 @@ const Card = ({ post }) => {
     const [isLoading, setisLoading] = useState(true);
     const [isUpdated, setisUpdated] = useState(false);
     const [textUpdate, settextUpdate] = useState(null);
-    const [postPicture, setpostPicture] = useState(null);
     const [showComments, setshowComments] = useState(false);
     const [text, settext] = useState("")
 
@@ -24,28 +22,11 @@ const Card = ({ post }) => {
     const userData = useSelector((state) => state.userReducer);
 
     const updateItem = () => {
-        if (textUpdate) {
+        if (textUpdate.trim()) {
             dispatch(updatePost(post.id, textUpdate))
         }
         setisUpdated(false);
     }
-    /* const updateItem = async () => {
-        if (textUpdate || postPicture) {
-            const data = new FormData();
-            data.append('content', textUpdate);
-            if (file) data.append("file", file);
-            data.append('attachement', postPicture);
-            data.append('postId', post.id)
-
-            await dispatch(updatePost(post.id, data));
-            dispatch(getPosts());
-            setisUpdated(false);
-        }
-    }; */
-    const handlePicture = (e) => {
-        console.log("e.target.files[0]", e.target.files[0])
-        setpostPicture(e.target.files[0]);
-    };
     useEffect(() => {
         !isEmpty(usersData[0]) && setisLoading(false);
     }, [usersData])
@@ -79,7 +60,7 @@ const Card = ({ post }) => {
     const handleComment = async (e) => {
         e.preventDefault();
 
-        if (text) {
+        if (text.trim()) {
             try {
                 await axios.post(ipServ + '/api/feed/post/comment', {
                     postId: post.id,
