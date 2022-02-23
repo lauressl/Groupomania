@@ -35,9 +35,6 @@ const CardComments = ({ post }) => {
         }
     };
 
-
-    console.log(postComment)
-
     const getComments = async (post) => {
         try {
             await axios.get(ipServ + `/api/feed/post/comment/${postId}`,
