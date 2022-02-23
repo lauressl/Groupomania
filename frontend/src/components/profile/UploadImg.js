@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uploadPicture } from '../../action/user.actions';
 
 const UploadImg = ({ email, username }) => {
-    const [file, setfile] = useState();
+    const [file, setfile] = useState('');
     const [userPic, setuserPic] = useState(null);
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.userReducer);
 
-    const handlePicture = (e) => {
+    const handlePicture = () => {
 
         const data = new FormData();
         data.append('email', email);

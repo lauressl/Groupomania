@@ -17,10 +17,7 @@ const UpdateProfile = () => {
             <div className='update-container'>
                 <div className='left-part'>
                     <h3>Photo de profil</h3>
-                    {(userData.attachement)
-                        ? <img src={userData.attachement} alt="user-pic" />
-                        : <img src={logo} alt="user-pic" />
-                    }
+                    <img src={userData.attachement} alt="user-pic" />
                     <UploadImg
                         email={userData.email}
                         username={userData.username}
