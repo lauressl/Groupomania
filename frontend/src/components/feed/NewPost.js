@@ -44,13 +44,16 @@ const NewPost = () => {
     return (
         <div className="post-container">
             <div className="post-form">
-                <textarea
-                    name="content"
-                    id="content"
-                    placeholder="Que voulez vous poster ?"
-                    onChange={(e) => setpost(e.target.value)}
-                    value={post}
-                />
+                <label>
+                    Publier :
+                    <textarea
+                        name="content"
+                        id="content"
+                        placeholder="Que voulez vous poster ?"
+                        onChange={(e) => setpost(e.target.value)}
+                        value={post}
+                    />
+                </label>
                 {post || postPicture ? (
                     <div className="card-container">
                         <div className="card-header">
@@ -78,13 +81,16 @@ const NewPost = () => {
             <div className="footer-form">
                 <div className="icon">
                     <img src={logoPicture} alt="img" />
-                    <input
-                        type="file"
-                        id="file-upload"
-                        name="file"
-                        accept="jpg jpeg png"
-                        onChange={(e) => handlePicture(e)}
-                    />
+                    <label>
+                        Ajouter:
+                        <input
+                            type="file"
+                            id="file-upload"
+                            name="file"
+                            accept="jpg jpeg png"
+                            onChange={(e) => handlePicture(e)}
+                        />
+                    </label>
                 </div>
                 <div className="btn-send">
                     {post || postPicture ? (

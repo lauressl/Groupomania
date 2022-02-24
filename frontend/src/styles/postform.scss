@@ -10,6 +10,10 @@
     flex-direction: column;
     width: 100%;
     margin: 0 auto 0;
+    label {
+      margin-bottom: 10px;
+      font-style: italic;
+    }
     textarea {
       height: 62px;
       width: 100%;
@@ -30,9 +34,13 @@
 
     .icon {
       position: relative;
+      top: 5px;
       cursor: pointer;
       width: 30px;
       height: 20px;
+      label {
+        display: none;
+      }
       img {
         position: absolute;
         height: 24px;
