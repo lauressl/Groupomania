@@ -58,4 +58,5 @@ Aller dans le dossier frontend : `cd frontend`
 
 ## Administration
 Pour avoir accès à la modération des commentaires et des posts :
-- Dans la base de données, choisir un utilisateur et mettre un 1 dans la colonne "isAdmin" pour le définir en tant qu'administrateur. 
+- Dans la base de données, choisir un utilisateur et mettre un 1 dans la colonne "isAdmin" pour le définir en tant qu'administrateur.
+- Dans les tables comment et post, changer la longeur du VARCHAR selon la longueur souhaitée pour ce champ
