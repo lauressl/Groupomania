@@ -61,7 +61,7 @@ const Login = () => {
                 </label>
                 <input
                     type="button"
-                    value="Envoyer"
+                    value="Se connecter"
                 />
             </form>
             <p>{errorMessage}</p>

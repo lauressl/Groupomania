@@ -65,7 +65,7 @@ const Signup = () => {
                 </label>
                 <input
                     type="button"
-                    value="Envoyer"
+                    value="S'enregistrer"
                 />
             </form>
             <p>{errorMessage}</p>
