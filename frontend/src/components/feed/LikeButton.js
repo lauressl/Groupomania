@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Popup from 'reactjs-popup';
 import likeLogo from '../../images/heart.svg';
 import likeLogoFilled from '../../images/heart-filled.svg'
 

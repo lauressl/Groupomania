@@ -50,7 +50,7 @@ const Login = () => {
     };
     return (
         <div className='home-login'>
-            <form>
+            <form onClick={(e) => connectUser(e)}>
                 <label>
                     Email :
                     <input type="email" label="email" onChange={(e) => { setUserEmail(e.target.value) }}></input>
@@ -59,9 +59,12 @@ const Login = () => {
                     Mot de passe :
                     <input type="password" label="Mot de passe" onChange={(e) => { setUserPassword(e.target.value) }}></input>
                 </label>
+                <input
+                    type="button"
+                    value="Envoyer"
+                />
             </form>
             <p>{errorMessage}</p>
-            <button onClick={(e) => connectUser(e)}> Se connecter</button>
         </div>
     )
 };

@@ -50,7 +50,7 @@ const Signup = () => {
     };
     return (
         <div className='home-signup'>
-            <form>
+            <form onClick={(e) => { registerUser(e) }} onSubmit={(e) => { registerUser(e) }}>
                 <label>
                     Nom d'utilisateur :
                     <input type="text" label="Nom d'utilisateur" onChange={(e) => { setUserName(e.target.value) }}></input>
@@ -63,9 +63,12 @@ const Signup = () => {
                     Mot de passe :
                     <input type="password" label="Mot de passe" onChange={(e) => { setUserPassword(e.target.value) }}></input>
                 </label>
+                <input
+                    type="button"
+                    value="Envoyer"
+                />
             </form>
             <p>{errorMessage}</p>
-            <button onClick={(e) => { registerUser(e) }}> S'enregistrer</button>
         </div>
     )
 };

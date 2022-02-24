@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deletedUser } from '../action/user.actions';
 import UpdateProfile from '../components/profile/UpdateProfile';

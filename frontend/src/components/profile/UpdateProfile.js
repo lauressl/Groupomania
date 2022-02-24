@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import logo from '../../images/logo-user.png'
 import UploadImg from './UploadImg';
 
 import '../../styles/profile.scss';
