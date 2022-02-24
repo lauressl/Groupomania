@@ -19,10 +19,10 @@ const Home = () => {
                 {(!getToken) &&
                     <Log />
                 }
-                {(getToken)&&
-                 <>
-                    <p>Bienvenue {userData.username}</p>
-                 </>
+                {(getToken) &&
+                    <>
+                        <h1>Bienvenue {userData.username}</h1>
+                    </>
                 }
             </div>
         </div>

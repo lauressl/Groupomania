@@ -1,6 +1,9 @@
 .feed {
   margin: 30px auto;
   width: 60%;
+  h1 {
+    display: none;
+  }
   .thread-container {
     display: flex;
     flex-direction: column;

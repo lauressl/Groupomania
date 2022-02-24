@@ -9,7 +9,7 @@ function NavbarLinks() {
         <div className='navbarLinks'>
             {(getToken) &&
                 <>
-                    <NavLink link to={{ pathname: "/FeedHome" }}><img src={logoNews} alt="navbarLinks-logo" /></NavLink>
+                    <NavLink link to={{ pathname: "/FeedHome" }}><img src={logoNews} alt="navbarLinks-logo1" /></NavLink>
                 </>
             }
         </div>

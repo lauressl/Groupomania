@@ -16,8 +16,8 @@ function Navbar() {
     return (
         <div className='navbar'>
             <div className='navbar-left'>
-                <img src={logo} alt="navbar-logo" className="logo-site" />
-                <img src={logoText} text alt="navbar-logo" className="logo-site-text" />
+                <img src={logo} alt="navbar-logo1" className="logo-site" />
+                <img src={logoText} text alt="navbar-logo2" className="logo-site-text" />
                 {(getToken) &&
                     <>
                         <NavLink link to={{ pathname: "/FeedHome" }}><img src={logoNews} alt="navbarLinks-logo" className="logo-feed" /></NavLink>
@@ -27,8 +27,8 @@ function Navbar() {
             <div className='navbar-right'>
                 {(getToken) &&
                     <>
-                        <NavLink className='navbar-right-link' link to={{ pathname: "/profile" }}><img src={logoUser} alt="navbar-logo" className="logo-user" /><p>{userData.username}</p></NavLink>
-                        <button onClick={(e) => { window.localStorage.clear(e); window.location.replace("/home"); }}><img src={logoConnect} alt="navbarLinks-logo" /></button>
+                        <NavLink className='navbar-right-link' link to={{ pathname: "/profile" }}><img src={logoUser} alt="navbar-logo3" className="logo-user" /><p>{userData.username}</p></NavLink>
+                        <button onClick={(e) => { window.localStorage.clear(e); window.location.replace("/home"); }}><img src={logoConnect} alt="navbarLink-logo" /></button>
                     </>
                 }
             </div>
