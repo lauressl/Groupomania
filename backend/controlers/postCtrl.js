@@ -80,7 +80,6 @@ module.exports = {
             try {
                 await models.post.destroy({
                     where: {
-                        userId: userId,
                         id: postId
                     }
                 })

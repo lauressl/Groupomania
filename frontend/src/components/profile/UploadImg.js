@@ -5,7 +5,7 @@ import { uploadPicture } from '../../action/user.actions';
 
 const UploadImg = ({ email, username }) => {
     const [file, setfile] = useState('');
-    const [userPic, setuserPic] = useState(null);
+    const [userPic, setuserPic] = useState();
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.userReducer);
 
