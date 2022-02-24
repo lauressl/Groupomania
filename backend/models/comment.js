@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.comment.belongsTo(models.user, {onDelete: 'CASCADE'}),
-      models.comment.belongsTo(models.post, {onDelete: 'CASCADE'})
+      models.comment.belongsTo(models.user, { onDelete: 'CASCADE' }),
+        models.comment.belongsTo(models.post, { onDelete: 'CASCADE' })
 
     }
   };
@@ -25,21 +25,21 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references:{
-        model:'user',
-        key:'id'
+      references: {
+        model: 'user',
+        key: 'id'
       }
     },
     postId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references:{
-        model:'post',
-        key:'id'
+      references: {
+        model: 'post',
+        key: 'id'
       }
     },
-    content:{
-      type: DataTypes.STRING,
+    content: {
+      type: DataTypes.STRING(500),
       allowNull: false
     }
   }, {
